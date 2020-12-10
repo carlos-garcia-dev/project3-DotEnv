@@ -22,7 +22,7 @@ class PublicationList extends Component {
     }
 
     componentDidMount = () => this.reloadPublications()
-    
+
 
     reloadPublications = () => {
 
@@ -44,7 +44,7 @@ class PublicationList extends Component {
                 <Row>
                     { this.state.publications
                             ?
-                            this.state.publications.map(elm => <PublicationListCard key={elm._id} {...elm} />)
+                            this.state.publications.map(elm => <PublicationListCard key={ elm._id } { ...elm } />)
                             :
                             <Loader /> }
                 </Row>
