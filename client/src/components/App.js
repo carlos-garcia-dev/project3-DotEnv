@@ -4,17 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 
-import ListPublications from './pages/list-Publications/List-Publications'
 
 
 //LINKS
-import SignIn from './pages/signIn-User/SignIn'
-import SignUp from './pages/signUp-User/SignUp'
+import UserSignIn from './pages/userSignIn/UserSignIn'
+import UserSignUp from './pages/userSignUp/UserSignUp'
 
 
 //COMPONENTS
 import Navigation from './layout/navBar/NavBar'
 import FootBar from './layout/footBar/FootBar'
+
+import PublicationList from './pages/publicationList/PublicationList'
+import PublicationDetails from './pages/publicationDetails/PublicationDetails'
 
 
 //SERVICES
@@ -51,18 +53,18 @@ render(){
       <main>
 
         <Switch>
-           {/* APP */}
-          <Route path="/" exact render={ () => <ListPublications currentUser={this.state.signnedUser} />} />
-          <Route path="/entries" render={ () => <ListPublications currentUser={this.state.signnedUser} />} />
+           {/* PAGES */}
+          <Route path="/" exact render={ () => <PublicationList currentUser={this.state.signnedUser} />} />
+          <Route path="/entries" render={ () => <PublicationList currentUser={this.state.signnedUser} />} />
+          <Route path="/entries/:publication_id" render={ props => <PublicationDetails {...props} />} />
           
           
           
           
           {/* AUTH */}
-          <Route path="/signup" render={ props => <SignUp storedUser={this.setStateUser} {...props} />} />
-          <Route path="/signin" render={ props => <SignIn storedUser={ this.setStateUser } {...props} />} />
-          <Route path="/signout" render={ props => <SignIn storedUser={this.setStateUser} {...props} />} />
-          
+          <Route path="/signup" render={ props => <UserSignUp storedUser={this.setStateUser} {...props} />} />
+          <Route path="/signin" render={ props => <UserSignIn storedUser={ this.setStateUser } {...props} />} />
+          <Route path="/signout" render={ props => <UserSignIn storedUser={this.setStateUser} {...props} />} />
         </Switch>
       
       </main>

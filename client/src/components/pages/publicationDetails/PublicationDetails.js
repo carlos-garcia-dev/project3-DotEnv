@@ -7,7 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import PublicationService from '../../../service/publication.service'
 
 
-class ListPublications extends Component {
+class PublicationDetails extends Component {
    
     constructor() {
         super()
@@ -33,9 +33,8 @@ class ListPublications extends Component {
                 <Row>{this.state.publications.map(elm => <Col key={elm._id}><h5>{elm.title}</h5></Col>)}</Row>
             </Container>
 
-            // Add Pagination Item
         ) 
     }
 }
 
-export default ListPublications
+export default PublicationDetails
