@@ -1,0 +1,42 @@
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: #f8f9fa;
+}
+
+h1,
+h2 {
+    font-weight: 700
+}
+
+h3,
+h4 {
+    font-weight: 500
+}
+
+
+h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: .8rem;
+}
+
+h6 {
+    font-weight: 700;
+    font-size: .5rem;
+
+}
+
+
+p {
+    font-weight: 300;
+}
+
+
+a {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
