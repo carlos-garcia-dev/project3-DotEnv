@@ -9,7 +9,7 @@ const User = require('./../models/user.model')
 const Commentary = require('./../models/commentary.model')
 
 
-mongoose.connect(`mongodb://localhost/publications`, {
+mongoose.connect(`mongodb://localhost/dot-env`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
