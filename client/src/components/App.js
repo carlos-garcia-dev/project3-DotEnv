@@ -54,8 +54,9 @@ render(){
         <Switch>
            {/* PAGES */}
           <Route path="/" exact render={ () => <PublicationList currentUser={this.state.signnedUser} />} />
-          <Route path="/entries" render={ () => <PublicationList currentUser={this.state.signnedUser} />} />
+          <Route path="/entries" exact render={ () => <PublicationList currentUser={this.state.signnedUser} />} />
           <Route path="/entries/:publication_id" render={ props => <PublicationDetails {...props} />} />
+          <Route path="/new" render={ props => <PublicationDetails {...props} />} />
           
           
           

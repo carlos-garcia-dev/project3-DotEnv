@@ -9,16 +9,14 @@ const PublicationListCard = ({ _id, title, subTitle, imageUrl, tag }) => {
         <Col lg={6}>
             <Card className="publication-card">
                 <Row>
-                <Col md={2}>
-                    <Card.Img style={{ backgroundColor: 'red' }, { height: '100px' }} src={imageUrl} />
-                </Col>
+                    <Col md={2}> <Card.Img style={{ height: '100px' }} src={imageUrl} /> </Col>
 
-                <Col>       
+                     <Col>       
                         <Card.Body style={{ height: '200px' }}>
                             <Card.Title><Link to={`/entries/${_id}`}>{title}</Link></Card.Title>
                             <Card.Subtitle>{subTitle}</Card.Subtitle>
                             <Card.Link>{tag}</Card.Link>
-                    </Card.Body>
+                        </Card.Body>
                     </Col>
                 </Row>
             </Card>

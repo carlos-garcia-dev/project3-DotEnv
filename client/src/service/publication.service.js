@@ -10,8 +10,8 @@ export default class PublicationService {
     }
 
     getPublications = () => this.apiHandler.get('/getAllPublications')
-    getOnePublication = publicationId => this.apiHandler.get(`/getOnePublication/${ publicationId }`)
-    postNewPublication = publicationDetails => this.apiHandler.post(`/newPublication`, publicationDetails)
+    getOnePublication = publicationId => this.apiHandler.get(`/getOnePublication/${publicationId}`)
+    postNewPublication = publicationDetails => this.apiHandler.post(`/newPublication`,publicationDetails)
     putPublication = () => this.apiHandler.put('/editPublication/:publication_id')
     deletePublication = () => this.apiHandler.delete('/deletePublication/:publication_id')
 }

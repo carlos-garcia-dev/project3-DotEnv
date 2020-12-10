@@ -19,7 +19,7 @@ router.get('/getOnePublication/:publication_id', (req, res) => {
         res.status(404).json({ message: 'Invalid ID'})
         return
     }
-    
+    console.log(req.params.publication_id)
     Publication
         .findById(req.params.publication_id)
         .then(response => res.json(response))

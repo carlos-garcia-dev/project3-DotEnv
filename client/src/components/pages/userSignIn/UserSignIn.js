@@ -42,7 +42,7 @@ class SignIn extends Component {
                         <br></br>
                       
                       
-                        <h2>Sign In</h2>
+                        <h1>Sign In</h1>
 
                         <br></br>
 

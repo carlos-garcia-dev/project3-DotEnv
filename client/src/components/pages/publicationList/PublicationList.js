@@ -39,7 +39,7 @@ class PublicationList extends Component {
                 <br></br>    
                 <br></br>    
             
-                <h2>Publications</h2>
+                <h1>Publications</h1>
                 
                 <Row>
                     { this.state.publications
