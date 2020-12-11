@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 
 
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap'
 import PublicationService from '../../../service/publication.service'
+
 
 class NewPublication extends Component {
 
@@ -44,7 +45,7 @@ class NewPublication extends Component {
             <Container>
 
                 <Row>
-                    <Col md={{ span: 6, offset: 3 }}>
+                    <Col md={{ span: 8, offset: 3 }}>
 
                         <br></br>
                         <br></br>
@@ -57,35 +58,63 @@ class NewPublication extends Component {
 
                         <Form onSubmit={this.handleSubmit}>
                             
-                            <Form.Group controlId="name">
+                            <Form.Group controlId="title">
                                 <Form.Label>Title</Form.Label>
-                                <Form.Control type="text" name="name" placeholder='Title' value={this.state.title} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="title" placeholder='Title' value={this.state.title} onChange={this.handleInputChange} />
                             </Form.Group>
                             
-                            <Form.Group controlId="subtitle">
+                            <Form.Group controlId="subTitle">
                                 <Form.Label>Subtitle</Form.Label>
-                                <Form.Control type="text" name="subtitle" placeholder='Subtitle' value={this.state.subTitle} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="subTitle" placeholder='Subtitle' value={this.state.subTitle} onChange={this.handleInputChange} />
                             </Form.Group>
                    
                             <Form.Group controlId="body">
-                                <Form.Label>Body</Form.Label>
-                                <Form.Control type="text" name="body" placeholder='Write your post here ...' value={this.state.bodyText} onChange={this.handleInputChange} />
-                                <Form.Control/> <textarea name="textarea" rows="10" cols="50">Write your post here ...</textarea>
+                                <Form.Label>Entry</Form.Label>
+                                <Form.Control type="textarea" name="bodyText"  rows="10" cols="50" placeholder="Write your new entry here ..." value={this.state.bodyText} onChange={this.handleInputChange} />
+                             </Form.Group>
                             
-                            </Form.Group>
 
-                            <Form.Group controlId="password">
+                            <Form.Group controlId="imageUrl">
                                 <Form.Label>Images</Form.Label>
-                                <Form.Control type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />
+                                <Form.File type="imageUrl" name="imageUrl" placeholder='imageUrl' value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-
-                            <Form.Group controlId="tag">
-                                <Form.Label>Tag</Form.Label>
-                                <Form.Control type="dropdown" name="tag" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />
-                            </Form.Group>
-
                             
-                            <Button variant="dark" type="submit">Post</Button>
+                            
+                            <Form.Group controlId="tag" type="dropdown" name="tag" placeholder='Select the category' value={this.state.password} onChange={this.handleInputChange}>
+                                <Form.Label>Tag</Form.Label>
+                            
+                                <Dropdown>
+                                  <Dropdown.Toggle className="btn-block" id="dropdown-basic">Select one Tag</Dropdown.Toggle>
+                                        
+                                  <Dropdown.Menu className="btn-block">
+                                    <Dropdown.Item href="#/action-1">Web design</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-2">Cybersecurity</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-3">Data analytics</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-4">Digital marketing</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-5">UX / UI Design</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-6">Developement tools</Dropdown.Item>                              
+                                  </Dropdown.Menu>
+                                </Dropdown>
+
+                            </Form.Group>
+{/* 
+
+                            <ButtonGroup className="mb-2">
+                              <Button>Web design</Button>
+                              <Button>Cybersecurity</Button>
+                              <Button>Data analytics</Button>
+                            </ButtonGroup>
+
+                            <ButtonGroup className="mb-2">
+                              <Button>Digital marketing</Button>
+                              <Button>UX / UI Design</Button>
+                              <Button>Developement tools</Button>
+                            </ButtonGroup> */}
+
+
+
+
+                            <Button className="float-right" variant="dark" type="submit">Post</Button>
 
                         </Form>
                     </Col>

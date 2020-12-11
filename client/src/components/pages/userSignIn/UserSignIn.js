@@ -56,7 +56,7 @@ class SignIn extends Component {
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button variant="dark" type="submit">Sign in</Button>
+                            <Button className="float-right" variant="dark" type="submit">Sign in</Button>
                         </Form>
                     </Col>
                 </Row>

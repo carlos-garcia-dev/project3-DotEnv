@@ -20,9 +20,9 @@ class Navigation extends Component {
     signOut = () => {
 
         this.serviceAuth
-            .signout()
-            .then(res => this.props.storedUser(undefined))
-            .catch( err => console.log(err))
+            .signOut()
+            .then(res => this.props.storedUser(res.data))
+            .catch(err => console.log(err))
     }
 
 render(){
@@ -50,8 +50,13 @@ render(){
                         <Link to='/entries'>
                             <Nav.Link as='div'>Entries</Nav.Link>
                         </Link>
+
+                        <Link to='/about'>
+                            <Nav.Link as='div' className='nav-button'>About</Nav.Link>
+                        </Link>
+
                         {
-                            this.props.loggedUser
+                            this.props.signnedUser
                                 ?
                                 <Nav.Link as='div' onClick={this.signOut}>Log Out</Nav.Link>
                                 :
@@ -59,14 +64,15 @@ render(){
                                     <Link to='/signup'>
                                         <Nav.Link as='div'>Sign Up</Nav.Link>
                                     </Link>
+                                
                                     <Link to='/signin'>
                                         <Nav.Link as='div' className='nav-button'>Sign In</Nav.Link>
                                     </Link>
                                 </>
-
                         }
+                    
                         <Link to='/profile'>
-                            <Nav.Link as='div'>{this.props.loggedUser ? this.props.loggedUser.username : 'Become user'}</Nav.Link>
+                            <Nav.Link as='div'>{this.props.signnedUser ? this.props.signnedUser.username : 'Become user'}</Nav.Link>
                         </Link>
                     </Nav>
                 </Navbar.Collapse>

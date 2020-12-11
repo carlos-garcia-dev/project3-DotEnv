@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
-import { Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Container} from 'react-bootstrap'
 
 import Loader from '../../shared/loader/Loader'
 
@@ -52,8 +52,8 @@ class PublicationDetails extends Component {
                             <br></br>
                             <br></br>
                             <p> {this.state.publications.bodyText} </p>
-                            <h5> {this.state.publications.tag} </h5>
-                            <h6> {this.state.publications.createdAt} </h6>
+                            <Link> <h5> {this.state.publications.tag} </h5></Link>
+                          <h6> {this.state.publications.createdAt} </h6>
                         </section>
                 
                     </>

@@ -70,7 +70,7 @@ class UserSignUp extends Component {
                             </Form.Group>
                             
 
-                            <Button variant="dark" type="submit">Sign up</Button>
+                            <Button className="float-right" variant="dark" type="submit">Sign up</Button>
                 
                         </Form>
                     </Col>

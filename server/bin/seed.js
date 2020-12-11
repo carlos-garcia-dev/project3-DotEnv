@@ -9,17 +9,16 @@ const User = require('./../models/user.model')
 const Commentary = require('./../models/commentary.model')
 
 
-mongoose.connect(`mongodb://localhost/dot-env`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(`mongodb://localhost/dot-env`, { useNewUrlParser: true, useUnifiedTopology: true })
+Publication.collection.drop()
+User.collection.drop()
 
 
-// Publication.collection.drop()
-// User.collection.drop()
-// Commentary.collection.drop()
+
+
 
 const userList = []
+const imageAvatars = []
 
 const userAdmin = {
     name: 'Carlos Garcia',
@@ -30,6 +29,7 @@ const userAdmin = {
 }
 
 userList.push(userAdmin)
+
 
 for (let i = 0; i < 10; i++) {
 
@@ -45,6 +45,7 @@ for (let i = 0; i < 10; i++) {
 
 
 
+const imagePosts = []
 const associatedPublications = []
 const everyTag = ['Web design', 'Cybersecurity', 'Data analytics', 'Digital marketing', 'UX / UI Design', 'Developement tools']
 
@@ -54,12 +55,12 @@ User
     .then(fillUsers => {
 
         for (let i = 0; i < 50; i++) {
-            console.log('CREATING PUBLICATIONS')
+            console.log(`CREATING PUBLICATIONS: ${i + 1}`)
             associatedPublications.push({
                 title: faker.lorem.sentence(),
                 subTitle: faker.lorem.sentence(),
-                bodyText: faker.lorem.paragraphs(5),
-                imageUrl: faker.internet.avatar(),
+                bodyText: faker.lorem.paragraphs(10),
+                imageUrl: faker.image.image(),
                 tag: everyTag[Math.round(Math.random() * (everyTag.length - 1))],
                 author: fillUsers[Math.round(Math.random() * (fillUsers.length - 1))]._id,
                 commentaries: []
@@ -68,13 +69,13 @@ User
         return Publication.create(associatedPublications)
     })
     .then(createdPublications => {
-        console.log('UPDATING USERS')
+        console.log(`CREATING USERS: ${userList.length}`)
         const publicationsPromises = []
         createdPublications.forEach(elm => publicationsPromises.push(User.findByIdAndUpdate(elm.author, {
             $push: {
                 publications: elm._id
-            },
-        })))
+            }
+        }, { useFindAndModify: false })))
 
         return Promise.all(publicationsPromises)
     })

@@ -7,11 +7,13 @@ const Publication =  require('../models/publication.model')
 const User = require('../models/user.model')
 
 
-router.get('/getAllPublications', (req, res) => {                        
+
+
+router.get('/getAllComments', (req, res) => {                        
     
-    Publication
-        .find()
-        .then(response => res.json(response))
+    Commentary
+        .findByIdAndUpdate(req.body)
+        .then(  )
         .catch(err => res.status(500).json(err))
 })
 

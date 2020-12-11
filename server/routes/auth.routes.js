@@ -2,13 +2,14 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 
-const User = require('../models/user.model')
-
 const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
+const User = require('../models/user.model')
 
-//SIGN UP
+
+
+
 router.post('/signup', (req, res, next) => {
 
     const { username, password } = req.body
@@ -18,7 +19,7 @@ router.post('/signup', (req, res, next) => {
         return
     }
 
-    if (password.length < 6  ) {  // || Segunda condición? 
+    if (password.length < 6 ) {
         res.status(400).json({ message: 'Password not secure' })
         return
     }
@@ -45,7 +46,6 @@ router.post('/signup', (req, res, next) => {
 })
 
 
-//SIGN IN
 router.post('/signin', (req, res) => {
 
     passport.authenticate('local', (err, user, failure) => {
@@ -64,13 +64,14 @@ router.post('/signin', (req, res) => {
     })(req, res)
 })
 
-//SIGN OUT
+
 router.post('/signout', (req, res) => {
     req.logout()
     res.status(200).json({message: 'Signned out succesfully'})
 })
 
-//IS SIGNNED IN
+
 router.get('/signnedin', (req, res) => req.isAuthenticated() ? res.status(200).json(req.user) : res.status(403).json({ message: 'Not enough permissions' }))
+
 
 module.exports = router
