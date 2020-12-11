@@ -34,7 +34,7 @@ const publicationSchema = new Schema({
 
     author: {
         type: Schema.Types.ObjectId,
-        rel: 'User'
+        ref: 'User'
     },
 
     commentaries: [{

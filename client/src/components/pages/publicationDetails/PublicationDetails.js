@@ -38,7 +38,6 @@ class PublicationDetails extends Component {
                     ?
                     <>
                       
-
                         <br></br>
                         <br></br>
 
@@ -55,7 +54,6 @@ class PublicationDetails extends Component {
                             <p> {this.state.publications.bodyText} </p>
                             <h5> {this.state.publications.tag} </h5>
                             <h6> {this.state.publications.createdAt} </h6>
-
                         </section>
                 
                     </>

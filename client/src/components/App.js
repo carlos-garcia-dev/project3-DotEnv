@@ -56,14 +56,11 @@ render(){
           <Route path="/" exact render={ () => <PublicationList currentUser={this.state.signnedUser} />} />
           <Route path="/entries" exact render={ () => <PublicationList currentUser={this.state.signnedUser} />} />
           <Route path="/entries/:publication_id" render={ props => <PublicationDetails {...props} />} />
-          <Route path="/new" render={ props => <PublicationDetails {...props} />} />
-          
-          
-          
+          <Route path="/new" render={ props => <PublicationDetails storedUser={this.setStateUser} signnedUser={this.state.signnedUser} {...props} />} />
           
           {/* AUTH */}
           <Route path="/signup" render={ props => <UserSignUp storedUser={this.setStateUser} {...props} />} />
-          <Route path="/signin" render={ props => <UserSignIn storedUser={ this.setStateUser } {...props} />} />
+          <Route path="/signin" render={ props => <UserSignIn storedUser={this.setStateUser} {...props} />} />
           <Route path="/signout" render={ props => <UserSignIn storedUser={this.setStateUser} {...props} />} />
         </Switch>
       

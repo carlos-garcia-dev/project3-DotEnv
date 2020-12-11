@@ -2,8 +2,10 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 
-const Publication = require('../models/publication.model')
+const Commentary = require('../models/commentary.model')
+const Publication =  require('../models/publication.model')
 const User = require('../models/user.model')
+
 
 router.get('/getAllPublications', (req, res) => {                        
     

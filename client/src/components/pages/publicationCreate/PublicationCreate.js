@@ -1,23 +1,25 @@
 import React, { Component } from 'react'
-import AuthService from '../../../service/auth.service'
+
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import PublicationService from '../../../service/publication.service'
 
 class NewPublication extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             title: '',
             subTitle: '',
             bodyText: '',
             imageUrl: '',
             tag: '',
-            author: this.props.signnedUser ? this.props.signnedUser._id : '',
-            commentaries: ''
+            author: this.props.signnedUser, 
+            commentaries: []
         }
-        this.serviceAuth = new AuthService()
+
+        this.servicePublication = new PublicationService()
+
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -25,11 +27,11 @@ class NewPublication extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        this.serviceAuth
-            .signIn(this.state)
+        this.servicePublication
+            .postNewPublication(this.state)
             .then(signnedUser => {
                 this.props.storedUser(signnedUser.data)
-                this.props.history.push('/')        // redirección JS ?
+                this.props.history.push('/')       
             })
             .catch(err => console.log({ err }))
     }
@@ -48,7 +50,7 @@ class NewPublication extends Component {
                         <br></br>
                       
                       
-                        <h1>Sign Up</h1>
+                        <h1>New entry</h1>
 
                         <br></br>
            
@@ -56,28 +58,35 @@ class NewPublication extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             
                             <Form.Group controlId="name">
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" name="name" placeholder='Name' value={this.state.name} onChange={this.handleInputChange} />
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control type="text" name="name" placeholder='Title' value={this.state.title} onChange={this.handleInputChange} />
                             </Form.Group>
                             
-                            <Form.Group controlId="username">
-                                <Form.Label>Username</Form.Label>
-                                <Form.Control type="text" name="username" placeholder='Username' value={this.state.username} onChange={this.handleInputChange} />
+                            <Form.Group controlId="subtitle">
+                                <Form.Label>Subtitle</Form.Label>
+                                <Form.Control type="text" name="subtitle" placeholder='Subtitle' value={this.state.subTitle} onChange={this.handleInputChange} />
                             </Form.Group>
                    
-                            <Form.Group controlId="email">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="text" name="email" placeholder='Email' value={this.state.email} onChange={this.handleInputChange} />
+                            <Form.Group controlId="body">
+                                <Form.Label>Body</Form.Label>
+                                <Form.Control type="text" name="body" placeholder='Write your post here ...' value={this.state.bodyText} onChange={this.handleInputChange} />
+                                <Form.Control/> <textarea name="textarea" rows="10" cols="50">Write your post here ...</textarea>
+                            
                             </Form.Group>
 
                             <Form.Group controlId="password">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>Images</Form.Label>
                                 <Form.Control type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            
 
-                            <Button variant="dark" type="submit">Sign up</Button>
-                            {console.log(this.state)}
+                            <Form.Group controlId="tag">
+                                <Form.Label>Tag</Form.Label>
+                                <Form.Control type="dropdown" name="tag" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />
+                            </Form.Group>
+
+                            
+                            <Button variant="dark" type="submit">Post</Button>
+
                         </Form>
                     </Col>
                 </Row>
