@@ -24,7 +24,6 @@ import UserProfile from './pages/userProfile/UserProfile'
 import AuthService from './../service/auth.service'
 
 
-
 class App extends Component {
   
   constructor() {
