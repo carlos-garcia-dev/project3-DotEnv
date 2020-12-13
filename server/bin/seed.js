@@ -16,9 +16,8 @@ User.collection.drop()
 
 
 
-
 const userList = []
-const imageAvatars = []
+
 
 const userAdmin = {
     name: 'Carlos Garcia',
@@ -45,7 +44,7 @@ for (let i = 0; i < 10; i++) {
 
 
 
-const imagePosts = []
+const imagePosts = ['https://hcti.io/v1/image/bf9be0c3-d903-491c-af7a-2e926e46081a', 'https://hcti.io/v1/image/304ede9f-2d34-494e-9df8-8bb290712e83']
 const associatedPublications = []
 const everyTag = ['Web design', 'Cybersecurity', 'Data analytics', 'Digital marketing', 'UX / UI Design', 'Developement tools']
 
@@ -60,7 +59,7 @@ User
                 title: faker.lorem.sentence(),
                 subTitle: faker.lorem.sentence(),
                 bodyText: faker.lorem.paragraphs(10),
-                imageUrl: faker.image.image(),
+                imageUrl: imagePosts[Math.round(Math.random() * (imagePosts.length - 1))],
                 tag: everyTag[Math.round(Math.random() * (everyTag.length - 1))],
                 author: fillUsers[Math.round(Math.random() * (fillUsers.length - 1))]._id,
                 commentaries: []

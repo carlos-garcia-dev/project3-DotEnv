@@ -23,7 +23,7 @@ class SignIn extends Component {
             .signIn(this.state)
             .then(signnedUser => {
                 this.props.storedUser(signnedUser.data)
-                this.props.history.push('/')        // redirección JS ?
+                this.props.history.push('/')
             })
             .catch(err => console.log({ err }))
     }
@@ -50,13 +50,13 @@ class SignIn extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
                                 <Form.Label>Username</Form.Label>
-                                <Form.Control type="text" name="username" placeholder='Username' value={this.state.username} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="username" placeholder='Username' className="rounded-0" value={this.state.username} onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="password">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />
+                                <Form.Control type="password" name="password" placeholder='Password' className="rounded-0" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button className="float-right" variant="dark" type="submit">Sign in</Button>
+                            <Button className="float-right rounded-0" variant="dark" type="submit">Sign in</Button>
                         </Form>
                     </Col>
                 </Row>

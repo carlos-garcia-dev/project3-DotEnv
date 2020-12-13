@@ -20,17 +20,7 @@ class Main extends Component {
         return (
 
             <Container>
-
-                <>
-                    <br></br>
-                    <br></br>
-                    <h1>Main</h1>
-                    <br></br>
-                </>
-            
-
-
-
+                <h1 className="page-title">Main</h1>            
             </Container>
         )
     }

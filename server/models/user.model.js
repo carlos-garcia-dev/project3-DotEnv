@@ -46,7 +46,7 @@ const userSchema = new Schema({
 
     avatar: {
         type: String,
-        default: 'avatarEmptyUrl'
+        default: 'https://www.pngfind.com/pngs/b/110-1102775_download-empty-profile-hd-png-download.png'
     },
 
     // phone: {

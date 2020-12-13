@@ -15,17 +15,15 @@ class PublicationList extends Component {
    
     constructor() {
         super()
-        this.state = {
-            publications: []
-        }
+        this.state = { publications: [] }
         this.servicePublication = new PublicationService()
     }
+
 
     componentDidMount = () => this.reloadPublications()
 
 
     reloadPublications = () => {
-
         this.servicePublication
             .getPublications()
             .then(res => this.setState({ publications: res.data }))
@@ -35,16 +33,13 @@ class PublicationList extends Component {
     render() {
         return (
             <Container>
-
-                <br></br>    
-                <br></br>    
-            
-                <h1>Publications</h1>
+                
+                <h1 className="page-title">Publications</h1>
                 
                 <Row>
                     { this.state.publications
                             ?
-                            this.state.publications.map(elm => <PublicationListCard key={ elm._id } { ...elm } />)
+                        this.state.publications.map(elm => <PublicationListCard key={elm._id} {...elm} />)
                             :
                             <Loader /> }
                 </Row>

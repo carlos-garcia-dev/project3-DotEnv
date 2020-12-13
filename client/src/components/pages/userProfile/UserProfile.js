@@ -26,10 +26,9 @@ class UserProfile extends Component {
             
             <Container>
                 <Col>
-                    <br/>
-                    <br/>
-                    <h1>Profile</h1>
-                    <br/>
+                    
+                    <h1 className="page-title">Profile</h1>
+         
                 <Row></Row>
                 
                 </Col>

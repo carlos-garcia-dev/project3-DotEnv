@@ -47,11 +47,7 @@ class NewPublication extends Component {
                 <Row>
                     <Col md={{ span: 8, offset: 3 }}>
 
-                        <br></br>
-                        <br></br>
-                      
-                      
-                        <h1>New entry</h1>
+                        <h1 className="page-title">New entry</h1>
 
                         <br></br>
            
@@ -72,13 +68,11 @@ class NewPublication extends Component {
                                 <Form.Label>Entry</Form.Label>
                                 <Form.Control type="textarea" name="bodyText"  rows="10" cols="50" placeholder="Write your new entry here ..." value={this.state.bodyText} onChange={this.handleInputChange} />
                              </Form.Group>
-                            
 
-                            <Form.Group controlId="imageUrl">
+                            <Form.Group controlId="imageUrl" >
                                 <Form.Label>Images</Form.Label>
-                                <Form.File type="imageUrl" name="imageUrl" placeholder='imageUrl' value={this.state.password} onChange={this.handleInputChange} />
+                                <Form.File type="imageUrl" name="imageUrl" placeholder='imageUrl' value={this.state.imageUrl} onChange={this.handleInputChange} />
                             </Form.Group>
-                            
                             
                             <Form.Group controlId="tag" type="dropdown" name="tag" placeholder='Select the category' value={this.state.password} onChange={this.handleInputChange}>
                                 <Form.Label>Tag</Form.Label>
