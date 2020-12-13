@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap'
 import Loader from '../../shared/loader/Loader'
 
 
-class Main extends Component {
+export default class Main extends Component {
 
     constructor() {
         super()
@@ -25,5 +25,3 @@ class Main extends Component {
         )
     }
 }
-
-export default Main

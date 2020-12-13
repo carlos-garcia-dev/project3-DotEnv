@@ -3,7 +3,7 @@ import AuthService from '../../../service/auth.service'
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
-class UserSignUp extends Component {
+export default class UserSignUp extends Component {
 
     constructor() {
         super()
@@ -79,5 +79,3 @@ class UserSignUp extends Component {
         )
     }
 }
-
-export default UserSignUp

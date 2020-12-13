@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-export default class PublicationService {
+export default class CommentaryService {
 
     constructor(){
         this.apiHandler = axios.create({
@@ -9,5 +9,9 @@ export default class PublicationService {
         })
     }
 
-   
+    getCommentaries = () => this.apiHandler.get('/getAllCommentaries')
+    getOneCommentary = commentaryId => this.apiHandler.get(`/getOneCommentary/${commentaryId}`)
+    postNewCommentary = commentaryId => this.apiHandler.post(`/newCommentary`,commentaryId)
+    putCommentary = () => this.apiHandler.put('/editCommentary/:commentary_id')
+    deleteCommentary = () => this.apiHandler.delete('/deleteCommentary/:commentary_id')
 }

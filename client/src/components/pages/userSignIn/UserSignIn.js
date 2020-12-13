@@ -3,7 +3,7 @@ import AuthService from '../../../service/auth.service'
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
-class SignIn extends Component {
+export default class SignIn extends Component {
 
     constructor() {
         super()
@@ -23,9 +23,8 @@ class SignIn extends Component {
             .signIn(this.state)
             .then(signnedUser => {
                 this.props.storedUser(signnedUser.data)
-                this.props.history.push('/')
-            })
-            .catch(err => console.log({ err }))
+                this.props.history.push('/')})
+            .catch(err => console.log({err}))
     }
 
 
@@ -38,14 +37,7 @@ class SignIn extends Component {
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
             
-                        <br></br>
-                        <br></br>
-                      
-                      
-                        <h1>Sign In</h1>
-
-                        <br></br>
-
+                        <h1 className="page-title">Sign In</h1>
 
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
@@ -64,5 +56,3 @@ class SignIn extends Component {
         )
     }
 }
-
-export default SignIn

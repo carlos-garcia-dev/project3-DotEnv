@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap'
 import PublicationService from '../../../service/publication.service'
 
 
-class NewPublication extends Component {
+export default class NewPublication extends Component {
 
     constructor(props) {
         super(props)
@@ -18,9 +18,7 @@ class NewPublication extends Component {
             author: this.props.signnedUser, 
             commentaries: []
         }
-
         this.servicePublication = new PublicationService()
-
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -31,10 +29,9 @@ class NewPublication extends Component {
         this.servicePublication
             .postNewPublication(this.state)
             .then(signnedUser => {
-                this.props.storedUser(signnedUser.data)
-                this.props.history.push('/')       
-            })
-            .catch(err => console.log({ err }))
+                this.props.currentUser(signnedUser.data)
+                this.props.history.push('/')})
+            .catch(err => console.log({err}))
     }
 
 
@@ -49,10 +46,7 @@ class NewPublication extends Component {
 
                         <h1 className="page-title">New entry</h1>
 
-                        <br></br>
-           
-
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form style={{margin: "10px"}} onSubmit={this.handleSubmit}>
                             
                             <Form.Group controlId="title">
                                 <Form.Label>Title</Form.Label>
@@ -89,7 +83,6 @@ class NewPublication extends Component {
                                     <Dropdown.Item href="#/action-6">Developement tools</Dropdown.Item>                              
                                   </Dropdown.Menu>
                                 </Dropdown>
-
                             </Form.Group>
 {/* 
 
@@ -105,9 +98,7 @@ class NewPublication extends Component {
                               <Button>Developement tools</Button>
                             </ButtonGroup> */}
 
-
-
-
+                            
                             <Button className="float-right" variant="dark" type="submit">Post</Button>
 
                         </Form>
@@ -118,4 +109,3 @@ class NewPublication extends Component {
     }
 }
 
-export default NewPublication

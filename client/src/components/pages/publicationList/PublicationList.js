@@ -11,7 +11,7 @@ import PublicationListCard from '../publicationList-Card/PublicationListCard'
 
 
 
-class PublicationList extends Component {
+export default class PublicationList extends Component {
    
     constructor() {
         super()
@@ -47,5 +47,3 @@ class PublicationList extends Component {
         ) 
     }
 }
-
-export default PublicationList

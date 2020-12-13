@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container'
 // import PublicationListCard from '../publicationList-Card/PublicationListCard'
 
 
-class UserSavedPublications extends Component {
+export default class UserSavedPublications extends Component {
    
     constructor() {
         super()
@@ -36,5 +36,3 @@ class UserSavedPublications extends Component {
         ) 
     }
 }
-
-export default UserSavedPublications

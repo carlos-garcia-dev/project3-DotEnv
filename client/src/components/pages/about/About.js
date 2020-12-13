@@ -6,7 +6,7 @@ import { Container, Col, Row } from 'react-bootstrap'
 import Loader from '../../shared/loader/Loader'
 
 
-export default class UserProfile extends Component {
+class About extends Component {
    
     constructor() {
         super()
@@ -26,14 +26,15 @@ export default class UserProfile extends Component {
             
             <Container>
                 <Col>
-                    
-                    <h1 className="page-title">Profile</h1>
+                
+                <h1 className="page-title">About</h1>
          
                 <Row></Row>
                 
                 </Col>
-
             </Container>
         ) 
     }
 }
+
+export default About

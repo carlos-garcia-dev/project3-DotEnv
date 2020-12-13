@@ -52,7 +52,6 @@ const everyTag = ['Web design', 'Cybersecurity', 'Data analytics', 'Digital mark
 User
     .create(userList)
     .then(fillUsers => {
-
         for (let i = 0; i < 50; i++) {
             console.log(`CREATING PUBLICATIONS: ${i + 1}`)
             associatedPublications.push({
@@ -63,20 +62,16 @@ User
                 tag: everyTag[Math.round(Math.random() * (everyTag.length - 1))],
                 author: fillUsers[Math.round(Math.random() * (fillUsers.length - 1))]._id,
                 commentaries: []
-            })
-        }
-        return Publication.create(associatedPublications)
-    })
+        })}
+        return Publication.create(associatedPublications)})
+    
     .then(createdPublications => {
         console.log(`CREATING USERS: ${userList.length}`)
         const publicationsPromises = []
-        createdPublications.forEach(elm => publicationsPromises.push(User.findByIdAndUpdate(elm.author, {
-            $push: {
-                publications: elm._id
-            }
-        }, { useFindAndModify: false })))
+        createdPublications.forEach(elm => publicationsPromises.push(User.findByIdAndUpdate(elm.author,
+            
+            {$push:{publications: elm._id}}, {useFindAndModify: false})))
 
-        return Promise.all(publicationsPromises)
-    })
+        return Promise.all(publicationsPromises)})
     .then(() => mongoose.connection.close())
     .catch(err => console.log(err))
