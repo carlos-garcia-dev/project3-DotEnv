@@ -13,7 +13,7 @@ const User = require('../models/user.model')
 
 router.get('/getAllComments', (req, res) => {                        
     
-    Publication
+    Commentary
         .find()
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
@@ -21,24 +21,22 @@ router.get('/getAllComments', (req, res) => {
 
 
 router.post('/newComment', (req, res) => {
-    const usersPromises = []
-    const publicationsPromises = []
 
     Commentary
         .create(req.body)
-        .then(publicationsPromises.push({Publication.findByIdAndUpdate(req.body, { $push: { new: true } })
-                return Promise.all([publicationsPromises, usersPromises])})
-        .then(() => res.user, res.publication)
+        .then(response => {
+            const userPromsise = User.findByIdAndUpdate(response.author, { $push: { commentaries: response._id } }, { new: true })
+            const publicationPromise = Publication.findByIdAndUpdate(req.body.publicationId, {$push: {commentaries: response._id}}, { new: true })
+        
+            return Promise.all([publicationPromise, userPromsise])
+        })
+        .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
 router.get('/getOneComment/:commentary_id', (req, res) => {
-    
-    if (!mongoose.Types.ObjectId.isValid(req.params.commentary_id)) {  
-        res.status(404).json({ message: 'Invalid ID'})
-        return
-    }
+
     
     Commentary
         .findById(req.params.commentary_id)

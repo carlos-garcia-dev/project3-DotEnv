@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import PublicationService from '../../../service/publication.service'
+import PublicationService from '../../../../service/publication.service'
 import { Container, Row } from 'react-bootstrap'
 
 
-import Loader from '../../shared/loader/Loader'
+import Loader from '../../../shared/loader/Loader'
 
-import PublicationListCard from '../publicationList-Card/PublicationListCard'
+import PublicationListCard from './publicationList-Card/PublicationListCard'
 
 
 

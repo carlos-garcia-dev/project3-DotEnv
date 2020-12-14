@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 
-
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap'
-import PublicationService from '../../../service/publication.service'
+
+import Loader from '../../../shared/loader/Loader'
+
+
+import PublicationService from '../../../../service/publication.service'
+import FileService from '../../../../service/file.service'
 
 
 export default class NewPublication extends Component {
@@ -10,24 +14,31 @@ export default class NewPublication extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: '',
-            subTitle: '',
-            bodyText: '',
-            imageUrl: '',
-            tag: '',
-            author: this.props.signnedUser, 
-            commentaries: []
+            
+            publication: {
+                title: '',
+                subTitle: '',
+                bodyText: '',
+                imageUrl: '',
+                tag: '',
+                author: this.props.signnedUser ? this.props.signnedUser._id : '',
+                commentaries: []
+            },
+                uploadingActive: false
         }
         this.servicePublication = new PublicationService()
+        this.serviceFiles = new FileService()
     }
 
-    handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+
+    handleInputChange = e => this.setState({ publication: { ...this.state.publication, [e.target.name]: e.target.value }})
+
 
     handleSubmit = e => {
         e.preventDefault()
 
         this.servicePublication
-            .postNewPublication(this.state)
+            .postNewPublication(this.state.publication)
             .then(signnedUser => {
                 this.props.currentUser(signnedUser.data)
                 this.props.history.push('/')})
@@ -35,10 +46,30 @@ export default class NewPublication extends Component {
     }
 
 
+    handleImageUpload = e => {
+        const uploadData = new FormData()
+
+        uploadData.append('imageUrl', e.target.files[0])
+
+        // e.target.files.size >= 4
+
+        this.setState({uploadingActive: true})
+
+        this.serviceFiles
+            .uploadImage(uploadData)
+            .then(response => this.setState({
+                publication: { ...this.state.publication, imageUrl: response.data.secure_url },
+                uploadingActive: false
+            }))
+            .catch(err => console.log('ERROR:', err))
+    }
+
+
+
+
+
     render() {
-
         return (
-
             <Container>
 
                 <Row>
@@ -50,25 +81,25 @@ export default class NewPublication extends Component {
                             
                             <Form.Group controlId="title">
                                 <Form.Label>Title</Form.Label>
-                                <Form.Control type="text" name="title" placeholder='Title' value={this.state.title} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="title" placeholder='Title' value={this.state.publication.title} onChange={this.handleInputChange} />
                             </Form.Group>
                             
                             <Form.Group controlId="subTitle">
                                 <Form.Label>Subtitle</Form.Label>
-                                <Form.Control type="text" name="subTitle" placeholder='Subtitle' value={this.state.subTitle} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="subTitle" placeholder='Subtitle' value={this.state.publication.subTitle} onChange={this.handleInputChange} />
                             </Form.Group>
                    
                             <Form.Group controlId="body">
                                 <Form.Label>Entry</Form.Label>
-                                <Form.Control type="textarea" name="bodyText"  rows="10" cols="50" placeholder="Write your new entry here ..." value={this.state.bodyText} onChange={this.handleInputChange} />
+                                <Form.Control type="textarea" name="bodyText"  rows="10" cols="50" placeholder="Write your new entry here ..." value={this.state.publication.bodyText} onChange={this.handleInputChange} />
                              </Form.Group>
 
                             <Form.Group controlId="imageUrl" >
                                 <Form.Label>Images</Form.Label>
-                                <Form.File type="imageUrl" name="imageUrl" placeholder='imageUrl' value={this.state.imageUrl} onChange={this.handleInputChange} />
+                                <Form.Control type="file" name="imageUrl" onChange={this.handleImageUpload} />
                             </Form.Group>
                             
-                            <Form.Group controlId="tag" type="dropdown" name="tag" placeholder='Select the category' value={this.state.password} onChange={this.handleInputChange}>
+                            <Form.Group controlId="tag" type="dropdown" name="tag" placeholder='Select the category' onChange={this.handleInputChange}>
                                 <Form.Label>Tag</Form.Label>
                             
                                 <Dropdown>

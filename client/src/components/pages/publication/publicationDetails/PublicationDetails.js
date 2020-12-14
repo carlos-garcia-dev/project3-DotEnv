@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
-import Loader from '../../shared/loader/Loader'
+import Loader from '../../../shared/loader/Loader'
 
-import CommentaryCard from '../commentaryCard/CommentaryCard'
+import CommentaryCard from '../../commentary/commentaryCard/CommentaryCard'
 
-import PublicationService from '../../../service/publication.service'
-import CommentaryService from '../../../service/commentary.service'
+import PublicationService from '../../../../service/publication.service'
+import CommentaryService from '../../../../service/commentary.service'
 
 
 export default class PublicationDetails extends Component {

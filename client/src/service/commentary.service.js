@@ -5,7 +5,8 @@ export default class CommentaryService {
 
     constructor(){
         this.apiHandler = axios.create({
-            baseURL:'http://localhost:5000/api/commentaries'
+            baseURL:'http://localhost:5000/api/commentaries',
+            withCredentials: true
         })
     }
 

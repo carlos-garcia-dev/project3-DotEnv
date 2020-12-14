@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PublicationService from '../../../service/publication.service'
+import PublicationService from '../../../../service/publication.service'
 import Container from 'react-bootstrap/Container'
 
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import PublicationService from '../../../service/publication.service'
+import PublicationService from '../../../../service/publication.service'
 import { Container, Col, Row } from 'react-bootstrap'
 
 
-import Loader from '../../shared/loader/Loader'
+import Loader from '../../../shared/loader/Loader'
 
 
 export default class UserProfile extends Component {
