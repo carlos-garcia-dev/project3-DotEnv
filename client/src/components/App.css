@@ -58,7 +58,12 @@ a:hover {
 }
 
 .entries-subTitle {
-    margin-top: 4rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
 
+}
+
+
+.entries-bodyText {
+    margin-top: .5rem;
 }

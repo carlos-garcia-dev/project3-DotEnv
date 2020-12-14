@@ -38,7 +38,7 @@ class Navigation extends Component {
                 </Link>
 
             
-                <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                <Navbar.Toggle aria-controls='basic-navbar-nav'/>
                 <Navbar.Collapse id='basic-navbar-nav'>
                     <Nav className='ml-auto'>
                         <Link to='/entries'><Nav.Link as='div'>Entries</Nav.Link></Link>
@@ -59,6 +59,7 @@ class Navigation extends Component {
                         <Link to='/profile'><Nav.Link as='div'>{this.props.signnedUser ? this.props.signnedUser.username : 'Become user'}</Nav.Link></Link>
                     </Nav>
                 </Navbar.Collapse>
+       
         </Navbar>
     )
   }

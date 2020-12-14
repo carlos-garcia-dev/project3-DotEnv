@@ -14,5 +14,4 @@ export default class AuthService {
     signIn = credentials => this.apiHandler.post('/signin', credentials)
     signOut = () => this.apiHandler.post('/signout')
     signnedIn = () => this.apiHandler.get('/signnedin')
-    
 }

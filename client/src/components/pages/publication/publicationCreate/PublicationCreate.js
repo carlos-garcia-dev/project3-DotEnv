@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Dropdown, Toast } from 'react-bootstrap'
 
 import Loader from '../../../shared/loader/Loader'
 
@@ -51,16 +51,15 @@ export default class NewPublication extends Component {
 
         uploadData.append('imageUrl', e.target.files[0])
 
-        // e.target.files.size >= 4
+        // e.target.files.size >= 4 ? 
 
-        this.setState({uploadingActive: true})
+        this.setState({ uploadingActive: true })
 
         this.serviceFiles
             .uploadImage(uploadData)
             .then(response => this.setState({
                 publication: { ...this.state.publication, imageUrl: response.data.secure_url },
-                uploadingActive: false
-            }))
+                uploadingActive: false }))
             .catch(err => console.log('ERROR:', err))
     }
 
@@ -95,7 +94,7 @@ export default class NewPublication extends Component {
                              </Form.Group>
 
                             <Form.Group controlId="imageUrl" >
-                                <Form.Label>Images</Form.Label>
+                                <Form.Label>Images  {this.state.uploadingActive && <Loader />} </Form.Label>
                                 <Form.Control type="file" name="imageUrl" onChange={this.handleImageUpload} />
                             </Form.Group>
                             
@@ -115,7 +114,8 @@ export default class NewPublication extends Component {
                                   </Dropdown.Menu>
                                 </Dropdown>
                             </Form.Group>
-{/* 
+                        
+                        {/* 
 
                             <ButtonGroup className="mb-2">
                               <Button>Web design</Button>
@@ -130,7 +130,7 @@ export default class NewPublication extends Component {
                             </ButtonGroup> */}
 
                             
-                            <Button className="float-right" variant="dark" type="submit">Post</Button>
+                            <Button className="float-right" variant="dark" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Uploading...' : 'Create entry'}</Button>
 
                         </Form>
                     </Col>

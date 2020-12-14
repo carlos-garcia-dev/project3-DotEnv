@@ -1,17 +1,17 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
-// import { Container, Row, Col } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 
-const CommentaryCard = ({title, bodyText, author}) => {
+const CommentaryCard = ({ title, bodyText, author, updateList }) => {
     
     return (
-        <>
-            <h4>Commentary Card</h4>
+
+        <Container>
             <h6>{title}</h6>
             <p>{bodyText}</p>
             <small>{author}</small>
-        </>
+        </Container> 
     )
 }
 

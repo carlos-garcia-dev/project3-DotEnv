@@ -24,6 +24,22 @@ router.get('/getOnePublication/:publication_id', (req, res) => {
     Publication
         .findById(req.params.publication_id)
         .populate('author')
+        .populate('commentaries')
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
+router.get('/getPublicationComments/:publication_id', (req, res) => {
+    
+    if (!mongoose.Types.ObjectId.isValid(req.params.publication_id)) {  
+        res.status(404).json({ message: 'Invalid ID'})
+        return
+    }
+    
+    Publication
+        .findById(req.params.publication_id, { commentaries: 1, title:0, subTitle:0, bodyText:0, imageUrl:0, tag:0, author:0})
+        .project('commentaries')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

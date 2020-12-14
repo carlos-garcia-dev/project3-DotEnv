@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Toast } from 'react-bootstrap'
 
 
 import Loader from '../../../shared/loader/Loader'
 
 import CommentaryCard from '../../commentary/commentaryCard/CommentaryCard'
+import CommentaryForm from '../../commentary/commentaryForm/CommentaryForm'
 
 import PublicationService from '../../../../service/publication.service'
 import CommentaryService from '../../../../service/commentary.service'
@@ -14,7 +15,7 @@ import CommentaryService from '../../../../service/commentary.service'
 export default class PublicationDetails extends Component {
    
     constructor() {
-     super()
+      super()
         this.state = { publications: undefined, commentaries: [] }
         this.servicePublication = new PublicationService()
         this.serviceCommentary = new CommentaryService()
@@ -25,30 +26,23 @@ export default class PublicationDetails extends Component {
   
         this.servicePublication
             .getOnePublication(publication_id)
-            .then(res => this.setState({ publications: res.data }))
+            .then(res => this.setState({ publications: res.data, commentaries: res.data.commentaries}))
             .catch(err => console.log(err)) 
     }
+    
+    reloadPublications = () => {
+        this.servicePublication
+            .getCommentaries()
+            .then(res => this.setState({ commentaries: res.data }))
+            .catch(err => console.log(err))
+    }
 
-    // putPublication = () => {
-    //     this.serviceAuth
-    //         .signnedIn()
-    //         .then()
-    //         .catch(err => console.log(err))
-    // }
-
-    // postNewCommentary = () => {
-    //     this.serviceCommentary
-    //         .create()
-    //         .then()
-    //         .catch(err => console.log(err)) 
-    // }
-
-    // putCommentary = () => {
-    //     this.serviceAuth
-    //         .signnedIn()
-    //         .then()
-    //         .catch(err => console.log(err))
-    // }
+    reloadComments = () => {
+        this.servicePublication
+            .getCommentaries()
+            .then(res => this.setState({ publications: res.data }))
+            .catch(err => console.log(err))
+    }
 
 
 
@@ -63,28 +57,29 @@ export default class PublicationDetails extends Component {
                         <Row><Col><h1 className="page-title">Entries</h1><Link><h4 className="float-right">{this.state.publications.tag}</h4></Link></Col></Row>
                         
                         <h1>{this.state.publications.title}</h1>
+                        <h4 className="entries-subTitle">{this.state.publications.subTitle}</h4>
 
                         <figure><img src="https://64.media.tumblr.com/09c6afa2d3bf83d804e8b6df77b9ab26/tumblr_psv9cqSmgY1vgxm5f_1280.jpg" alt={this.state.publications.title} className="entries-main"/></figure>
                         {/* <img src={this.state.publications.imageUrl} alt={this.state.publications.title} /> */}
-                        <small className="float-right">{this.state.publications.subTitle}</small>
-                        <h4 className="entries-subTitle">{this.state.publications.subTitle}</h4>
+                        <p className="position-right">{this.state.publications.subTitle}</p>
             
-                        <p>{this.state.publications.bodyText}</p>
+                        <p className="entries-bodyText">{this.state.publications.bodyText}</p>
                     
-                        <Row><Link ><h4>{this.state.publications.createdAt}</h4></Link><Link className="float-right"><h4>{this.state.publications.author._id}</h4></Link></Row>                
+                         <Row><Col><Link ><h4>{this.state.publications.createdAt}</h4></Link><Link className="float-right"><h4>{this.state.publications.author._id}</h4></Link></Col></Row>
+                         
+                        
+                        {this.props.signnedUser
+                            ?
+                            <Link onClick={this.putPublication}>Editar</Link>
+                            :
+                            undefined}
+                   
+                        
+                        <Row><CommentaryForm signnedUser={this.props.signnedUser} storedUser={this.props.storedUser} updateList={this.props.reloadPublications}  updateCommentList={this.props.reloadComments}  publicationId={this.state.publications._id} /></Row>
+                        <Row><CommentaryCard signnedUser={this.props.signnedUser} storedUser={this.props.storedUser} updateList={this.props.reloadPublications} updateCommentList={this.props.reloadComments} publicationId={this.state.publications._id} /> </Row>    
                     </>
                     :
                     <Loader />}
-
-                
-                {this.props.signnedUser
-                    ?
-                    <Link onClick={this.putPublication}>Editar</Link>
-                    :
-                    undefined}
-                
-
-                <CommentaryCard/>
             
             </Container>
         ) 

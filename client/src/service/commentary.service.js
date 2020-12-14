@@ -12,7 +12,7 @@ export default class CommentaryService {
 
     getCommentaries = () => this.apiHandler.get('/getAllCommentaries')
     getOneCommentary = commentaryId => this.apiHandler.get(`/getOneCommentary/${commentaryId}`)
-    postNewCommentary = commentaryId => this.apiHandler.post(`/newCommentary`,commentaryId)
+    postNewCommentary = commentaryInfo => this.apiHandler.post(`/newComment`, commentaryInfo)
     putCommentary = () => this.apiHandler.put('/editCommentary/:commentary_id')
     deleteCommentary = () => this.apiHandler.delete('/deleteCommentary/:commentary_id')
 }
