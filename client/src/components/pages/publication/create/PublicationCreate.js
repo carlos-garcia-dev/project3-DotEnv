@@ -1,33 +1,32 @@
 import React, { Component } from 'react'
-
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap'
 
 import Loader from '../../../shared/loader/Loader'
 
 
-import PublicationService from '../../../../service/publication.service'
-import FileService from '../../../../service/file.service'
+import ServicePublication from '../../../../service/publication.service'
+import ServiceFile from '../../../../service/file.service'
 
 
 export default class NewPublication extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            
-            publication: {
-                title: '',
-                subTitle: '',
-                bodyText: '',
-                imageUrl: '',
-                tag: '',
-                author: this.props.signnedUser ? this.props.signnedUser._id : '',
-                commentaries: []
-            },
-                uploadingActive: false
-        }
-        this.servicePublication = new PublicationService()
-        this.serviceFiles = new FileService()
+            this.state = {
+
+                publication: {
+                    title: '',
+                    subTitle: '',
+                    bodyText: '',
+                    imageUrl: '',
+                    tag: '',
+                    author: this.props.signnedUser ? this.props.signnedUser._id : '',
+                    commentaries: []
+                },
+                    uploadingActive: false
+            }
+        this.servicePublication = new ServicePublication()
+        this.serviceFiles = new ServiceFile()
     }
 
 
@@ -40,7 +39,7 @@ export default class NewPublication extends Component {
         this.servicePublication
             .postNewPublication(this.state.publication)
             .then(signnedUser => {
-                this.props.currentUser(signnedUser.data)
+                this.props.storeUser(signnedUser.data)
                 this.props.history.push('/')})
             .catch(err => console.log({err}))
     }
@@ -51,9 +50,10 @@ export default class NewPublication extends Component {
 
         uploadData.append('imageUrl', e.target.files[0])
 
-        // e.target.files.size >= 4 ? 
+        // e.target.files.size >= 4000 ? e.target.files. : <Alert></Alert>
 
         this.setState({ uploadingActive: true })
+
 
         this.serviceFiles
             .uploadImage(uploadData)
@@ -68,7 +68,7 @@ export default class NewPublication extends Component {
 
 
     render() {
-        return (
+    return(
             <Container>
 
                 <Row>

@@ -42,8 +42,13 @@ export default class PublicationDetails extends Component {
     
     reloadComments = () => {
         this.servicePublication
-            .getCommentaries()
-            .then(res => this.setState({ publications: res.data }))
+            .getAllPublicationComments(this.state.publications._id)
+            .then(res => {
+                
+                const publicationsCopy = { ...this.state.publications }
+
+                publicationsCopy.commentaries = res.data
+                this.setState({publications: publicationsCopy})})
             .catch(err => console.log(err))
     }
 
@@ -51,37 +56,57 @@ export default class PublicationDetails extends Component {
 
 
     render() {
+            console.log(this.state.publications)
         return (
             <Container>
                 
+
                 {this.state.publications
                     ?
-                    <>
-                        <Row><Col><h1 className="page-title">Entries</h1><Link><h4 className="float-right">{this.state.publications.tag}</h4></Link></Col></Row>
-                        
-                        <h1>{this.state.publications.title}</h1>
-                        <h4 className="entries-subTitle">{this.state.publications.subTitle}</h4>
 
-                        <figure><img src="https://64.media.tumblr.com/09c6afa2d3bf83d804e8b6df77b9ab26/tumblr_psv9cqSmgY1vgxm5f_1280.jpg" alt={this.state.publications.title} className="entries-main"/></figure>
-                        {/* <img src={this.state.publications.imageUrl} alt={this.state.publications.title} /> */}
+                    <>
+                        <Row>
+                            <Col>
+                                <h1 className="page-title">Entries</h1>
+                                <Link><h4 className="float-right">{this.state.publications.tag}</h4></Link>
+                            </Col>
+                        </Row>
+                        
+
+                        <h3 className="entries-subTitle">{this.state.publications.subTitle}</h3>
+
+                        
+                        <figure>
+                            <img src={this.state.publications.imageUrl} alt={this.state.publications.title} className="entries-main" />
+                        </figure>
+                        
+             
                         <p className="position-right">{this.state.publications.subTitle}</p>
-            
                         <p className="entries-bodyText">{this.state.publications.bodyText}</p>
                     
-                         <Row><Col><Link ><h4>{this.state.publications.createdAt}</h4></Link><Link className="float-right"><h4>{this.state.publications.author._id}</h4></Link></Col></Row>
+
+                        <Row>
+                            <Col>
+                                <Link ><h4>{this.state.publications.createdAt}</h4></Link>
+                                <Link className="float-right"> <h4>{this.state.publications.author._id}</h4></Link>
+                            </Col>
+                        </Row>
                          
                         
-                        {this.props.signnedUser
-                            ?
-                            <Link onClick={this.putPublication}>Editar</Link>
-                            :
-                            undefined}
-                   
+                        {this.props.signnedUser && <Link onClick={this.putPublication}>Edit</Link>}
+                
                         
-                        <Row><CommentaryForm signnedUser={this.props.signnedUser} storedUser={this.props.storedUser} updateList={this.props.reloadPublications}  updateCommentList={this.props.reloadComments}  publicationId={this.state.publications._id} /></Row>
-                        <Row><CommentaryCard signnedUser={this.props.signnedUser} storedUser={this.props.storedUser} updateList={this.props.reloadPublications} updateCommentList={this.props.reloadComments} publicationId={this.state.publications._id} /> </Row>    
+                        <Row>
+                            <CommentaryForm signnedUser={this.props.signnedUser} storedUser={this.props.storedUser} updateCommentList={this.reloadComments} publicationId={this.state.publications._id} />
+                        </Row>
+
+                        {this.state.publications.commentaries.reverse().map(elm =>
+                            <Row key={elm._id}>
+                                <CommentaryCard signnedUser={this.props.signnedUser} {...elm} />
+                            </Row>)}   
                     </>
-                    :
+
+                    : 
                     <Loader />}
             
             </Container>

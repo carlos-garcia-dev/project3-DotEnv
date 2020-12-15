@@ -1,29 +1,31 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Button } from 'react-bootstrap'
+import { Container, Row, Button } from 'react-bootstrap'
 
 
 const CommentaryCard = ({ title, bodyText, author }) => {
     
     return (
         <Container>
-        
-        
-            {this.props.signnedUser
+            
+         {/* { this.author === this.siggnedUser._id
                 ?
-                <>
-                <Link onClick={this.putPublication}><Button className="rounded-0" variant="dark">Edit</Button></Link>
-                <Link onClick={this.putPublication}><Button className="rounded-0 float-right" variant="dark">Delete</Button></Link>
-                </>
+                <Link><Button className="rounded-0 float-right" variant="dark">Edit</Button></Link>
                 :
-                undefined}
-                   
+                undefined
+            }  */}
 
 
+
+            {/* {author && <Link><Button className="rounded-0 float-right" variant="dark">Edit</Button></Link>} */}
+            { author  && <Link><Button className="rounded-0 float-right" variant="dark">Delete</Button></Link>}
+     
                 
-            <h6>{title}</h6>
+            {/* {this.signnedUser._id && <Link><Button className="rounded-0 float-right" variant="dark">Delete</Button></Link>} */}
+
+            <h4>{title}</h4>
             <p>{bodyText}</p>
-            <small>{author}</small>
+            <Row className="float-right"><small>{author}</small></Row>
         </Container> 
     )
 }

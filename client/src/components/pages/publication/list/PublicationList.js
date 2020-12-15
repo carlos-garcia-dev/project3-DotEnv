@@ -32,12 +32,16 @@ export default class PublicationList extends Component {
 
 
 
-
     render() {
         return (
             <Container>
                 
                 <h1 className="page-title">Publications</h1>
+                
+                <Row>
+                {/* {this.state.siggnedUser */}
+
+                </Row>
                 
                 <Row>
                     { this.state.publications

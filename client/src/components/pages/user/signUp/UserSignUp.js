@@ -27,7 +27,7 @@ export default class UserSignUp extends Component {
         this.serviceAuth
             .signIn(this.state)
             .then(signnedUser => {
-                this.props.storedUser(signnedUser.data)
+                this.props.storeUser(signnedUser.data)
                 this.props.history.push('/')})
             .catch(err => console.log({ err }))
     }
