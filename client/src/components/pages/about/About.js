@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import PublicationService from '../../../service/publication.service'
 import { Container, Col, Row } from 'react-bootstrap'
 
 
-import Loader from '../../shared/loader/Loader'
+// import Loader from '../../shared/loader/Loader'
+
+
+import PublicationService from '../../../service/publication.service'
 
 
 class About extends Component {

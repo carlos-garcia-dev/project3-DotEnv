@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Col, Row } from 'react-bootstrap'
 
-import Loader from '../../shared/loader/Loader'
+// import Loader from '../../shared/loader/Loader'
 
 const BecomeUser = () => {
        

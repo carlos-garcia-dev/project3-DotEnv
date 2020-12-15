@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
-import PublicationService from '../../../../service/publication.service'
 import { Container, Row } from 'react-bootstrap'
 
 
 import Loader from '../../../shared/loader/Loader'
 
-import PublicationListCard from './publicationList-Card/PublicationListCard'
+
+import PublicationListCard from './PublicationListCard'
 
 
-
+import PublicationService from '../../../../service/publication.service'
 
 
 export default class PublicationList extends Component {
    
     constructor() {
         super()
-        this.state = { publications: [] }
-        this.servicePublication = new PublicationService()
+            this.state = { publications: [] }
+            this.servicePublication = new PublicationService()
     }
 
 
@@ -29,6 +29,9 @@ export default class PublicationList extends Component {
             .then(res => this.setState({ publications: res.data }))
             .catch(err => console.log(err))
     }
+
+
+
 
     render() {
         return (
@@ -43,6 +46,7 @@ export default class PublicationList extends Component {
                             :
                             <Loader /> }
                 </Row>
+                
             </Container>
         ) 
     }

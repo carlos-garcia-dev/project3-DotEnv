@@ -1,21 +1,18 @@
 import  React, { Component } from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { Navbar, Nav } from 'react-bootstrap'
 
 import './NavBar.css'
-
-
 import logo from './logo.png'
 
 
-import AuthService from '../../../service/auth.service'
+import ServiceAuth from '../../../service/auth.service'
 
 class Navigation extends Component {
   
     constructor() {
-      super()
-        this.serviceAuth = new AuthService()
-    }
+        super()
+            this.serviceAuth = new ServiceAuth()}
 
     signOut = () => {
         this.serviceAuth
@@ -40,24 +37,26 @@ class Navigation extends Component {
             
                 <Navbar.Toggle aria-controls='basic-navbar-nav'/>
                 <Navbar.Collapse id='basic-navbar-nav'>
+                    
                     <Nav className='ml-auto'>
+                    
                         <Link to='/entries'><Nav.Link as='div'>Entries</Nav.Link></Link>
-
                         <Link to='/about'><Nav.Link as='div' className='nav-button'>About</Nav.Link></Link>
 
+                    
                         { this.props.signnedUser
                                 ?
                                 <Link><Nav.Link as='div' onClick={this.signOut}>Log Out</Nav.Link></Link>
                                 :
                                 <>
                                     <Link to='/signup'><Nav.Link as='div'>Sign Up</Nav.Link></Link>
-                                
                                     <Link to='/signin'><Nav.Link as='div' className='nav-button'>Sign In</Nav.Link></Link>
                                 </>
                         }
                     
                         <Link to='/profile'><Nav.Link as='div'>{this.props.signnedUser ? this.props.signnedUser.username : 'Become user'}</Nav.Link></Link>
                     </Nav>
+                
                 </Navbar.Collapse>
        
         </Navbar>

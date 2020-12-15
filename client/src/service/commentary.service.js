@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-export default class CommentaryService {
+export default class ServiceCommentary {
 
     constructor(){
         this.apiHandler = axios.create({

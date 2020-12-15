@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-export default class PublicationService {
+export default class ServicePublication {
 
     constructor(){
         this.apiHandler = axios.create({

@@ -5,15 +5,15 @@ import Container from 'react-bootstrap/Container'
 
 // import Loader from '../../shared/loader/Loader'
 
-// import PublicationListCard from '../publicationList-Card/PublicationListCard'
+import PublicationListCard from '../publicationList-Card/PublicationListCard'
 
 
 export default class UserSavedPublications extends Component {
    
     constructor() {
         super()
-        this.state = { publications: [] }
-        this.servicePublication = new PublicationService()
+            this.state = { publications: [] }
+            this.servicePublication = new PublicationService()
     }
 
     componentDidMount = () => this.reloadPublications()
@@ -28,10 +28,7 @@ export default class UserSavedPublications extends Component {
     render() {
         return (
             <Container>
-                <br></br>    
-                <br></br>    
-            
-                <h1>Saved Publications</h1>
+                <h1 className="page-title">Saved Publications</h1>
             </Container>
         ) 
     }

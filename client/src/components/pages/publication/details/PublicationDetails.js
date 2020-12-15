@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Button, Toast } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 
 import Loader from '../../../shared/loader/Loader'
 
-import CommentaryCard from '../../commentary/commentaryCard/CommentaryCard'
-import CommentaryForm from '../../commentary/commentaryForm/CommentaryForm'
+import CommentaryCard from '../../commentary/card/CommentaryCard'
+import CommentaryForm from '../../commentary/form/CommentaryForm'
 
-import PublicationService from '../../../../service/publication.service'
-import CommentaryService from '../../../../service/commentary.service'
+import ServicePublication from '../../../../service/publication.service'
+import ServiceCommentary from '../../../../service/commentary.service'
 
 
 export default class PublicationDetails extends Component {
    
     constructor() {
-      super()
-        this.state = { publications: undefined, commentaries: [] }
-        this.servicePublication = new PublicationService()
-        this.serviceCommentary = new CommentaryService()
+        super()
+            this.state = { publications: undefined, commentaries: [] }
+            this.servicePublication = new ServicePublication()
+            this.serviceCommentary = new ServiceCommentary()
     }
     
+
     componentDidMount = () => {
         const publication_id = this.props.match.params.publication_id
   
@@ -30,6 +31,7 @@ export default class PublicationDetails extends Component {
             .catch(err => console.log(err)) 
     }
     
+
     reloadPublications = () => {
         this.servicePublication
             .getCommentaries()
@@ -37,6 +39,7 @@ export default class PublicationDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    
     reloadComments = () => {
         this.servicePublication
             .getCommentaries()
