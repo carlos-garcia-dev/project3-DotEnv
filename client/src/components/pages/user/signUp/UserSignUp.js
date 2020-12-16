@@ -11,8 +11,10 @@ export default class UserSignUp extends Component {
     constructor() {
         super()
             this.state = {
+                name:'',
                 username: '',
-                password: ''
+                email: '',
+                password: '',
             }
         this.serviceAuth = new ServiceAuth()
     }
@@ -25,11 +27,11 @@ export default class UserSignUp extends Component {
         e.preventDefault()
 
         this.serviceAuth
-            .signIn(this.state)
+            .signUp(this.state)
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
                 this.props.history.push('/')})
-            .catch(err => console.log({ err }))
+            .catch(err => console.log('HA HABIDO UN ERROR',err))
     }
 
 
@@ -56,6 +58,7 @@ export default class UserSignUp extends Component {
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="text" name="email" placeholder='Email' value={this.state.email} onChange={this.handleInputChange} />
                         </Form.Group>
+
                         <Form.Group controlId="password">
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />

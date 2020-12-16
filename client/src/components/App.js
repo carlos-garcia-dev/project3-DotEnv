@@ -65,7 +65,7 @@ export default class App extends Component {
                 <Route path="/about" render={() => <About currentUser={this.state.signnedUser} />} />
 
 
-                <Route path="/signup" render={props => <UserSignUp storedUser={this.setStateUser} {...props} />} />
+                <Route path="/signup" render={props => <UserSignUp storeUser={this.setStateUser} {...props} />} />
                 <Route path="/signin" render={props => <UserSignIn storeUser={this.setStateUser} {...props} />} />
                 <Route path="/signout" render={props => <UserSignIn storedUser={this.setStateUser} {...props} />} />
                 <Route path="/profile" render={() => this.state.signnedUser ? <UserProfile signnedUser={this.state.signnedUser} storedUser={this.setStateUser} /> : <Redirect to="/" />} />

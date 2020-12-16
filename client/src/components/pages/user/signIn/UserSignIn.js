@@ -29,7 +29,7 @@ export default class SignIn extends Component {
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
                 this.props.history.push('/')})
-            .catch(err => console.log({err}))
+            .catch(err => console.log(err))
     }
 
 

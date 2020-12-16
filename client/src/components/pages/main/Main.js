@@ -56,7 +56,20 @@ export default class Main extends Component {
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                       </Carousel.Caption>
                     </Carousel.Item>
-                </Carousel>
+            </Carousel>
+            
+            <section>
+
+              <h3 className="page-title">Most recent posts</h3>
+
+
+        
+              
+
+
+
+            </section>
+
             </Container>
         )
     }

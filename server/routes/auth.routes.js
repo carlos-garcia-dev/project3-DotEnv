@@ -10,7 +10,7 @@ const User = require('../models/user.model')
 
 
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res) => {
 
     const { username, password } = req.body
 
@@ -39,10 +39,10 @@ router.post('/signup', (req, res, next) => {
 
             User
                 .create({ username, password: hashPass })
-                .then(newUser => req.login(newUser, err => err ? res.status(500).json({message: 'It was not possible to sign in'}) : res.status(200).json(newUser)))
+                .then(console.log(req.body)) 
+                .then(newUser => req.login(newUser, err => err ? res.status(500).json({message: 'It was not possible to sign up'}) : res.status(200).json(newUser)))
                 .catch(() => res.status(500).json({ message: 'It was not possible to create the user.' }))
         })
-        .catch(error => next(error))
 })
 
 

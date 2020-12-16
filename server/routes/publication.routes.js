@@ -7,7 +7,7 @@ const Publication = require('../models/publication.model')
 const User = require('../models/user.model')
 
 
-
+const checkId = require('../middlewares/middlewares.js')
 
 
 router.get('/getAllPublications', (req, res) => {                        
@@ -50,7 +50,7 @@ router.post('/newPublication', (req, res) => {
     
     Publication 
         .create(req.body)
-        .then(response => User.findByIdAndUpdate(response.author, {$push: { publications: response._id}}, {new: true} ))
+        .then(response => User.findByIdAndUpdate(response.author, {$push: { publications: response._id}}, {new: true}, { useFindAndModify: false } ))
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -65,15 +65,10 @@ router.put('/editPublication/:publication_id', (req, res) => {
 })
 
 
-router.delete('/deletePublication/:publication_id', (req, res) => {        
-    
-    if (!mongoose.Types.ObjectId.isValid(req.params.publication_id)) { 
-        res.status(404).json({ message: 'Invalid ID'})
-        return
-    }
+router.delete('/deletePublication/:id', checkId, (req, res) => {        
     
     Publication
-        .findByIdAndDelete(req.params.publication_id)
+        .findByIdAndDelete(req.params.id, { useFindAndModify: false })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
