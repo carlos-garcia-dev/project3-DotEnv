@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Container, Row, Button } from 'react-bootstrap'
 
 
 import Loader from '../../../shared/loader/Loader'
@@ -33,14 +34,13 @@ export default class PublicationList extends Component {
 
 
     render() {
-        return (
+    return(
             <Container>
                 
                 <h1 className="page-title">Publications</h1>
                 
                 <Row>
-                {/* {this.state.siggnedUser */}
-
+                    { this.props.currentUser !== undefined && <Link to='/new'><Button className="float-right rounded-0" variant="dark">Create</Button></Link> }
                 </Row>
                 
                 <Row>
@@ -50,7 +50,6 @@ export default class PublicationList extends Component {
                             :
                             <Loader /> }
                 </Row>
-                
             </Container>
         ) 
     }

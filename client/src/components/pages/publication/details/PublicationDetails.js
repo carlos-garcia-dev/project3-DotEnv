@@ -56,14 +56,12 @@ export default class PublicationDetails extends Component {
 
 
     render() {
-            console.log(this.state.publications)
-        return (
+    return (
             <Container>
                 
 
                 {this.state.publications
                     ?
-
                     <>
                         <Row>
                             <Col>
@@ -93,19 +91,19 @@ export default class PublicationDetails extends Component {
                         </Row>
                          
                         
-                        {this.props.signnedUser && <Link onClick={this.putPublication}>Edit</Link>}
+                        { this.props.signnedUser && <Link onClick={this.putPublication}>Edit</Link> }
                 
                         
                         <Row>
                             <CommentaryForm signnedUser={this.props.signnedUser} storedUser={this.props.storedUser} updateCommentList={this.reloadComments} publicationId={this.state.publications._id} />
                         </Row>
 
-                        {this.state.publications.commentaries.reverse().map(elm =>
+                        { this.state.publications.commentaries.reverse().map(elm =>
                             <Row key={elm._id}>
                                 <CommentaryCard signnedUser={this.props.signnedUser} {...elm} />
-                            </Row>)}   
+                            </Row>)
+                        }   
                     </>
-
                     : 
                     <Loader />}
             

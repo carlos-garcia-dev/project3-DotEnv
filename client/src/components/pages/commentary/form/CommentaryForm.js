@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Col, Form, Button } from 'react-bootstrap'
 
 
@@ -55,8 +56,12 @@ export default class CommentaryForm extends Component {
                     <Form.Control type="text" name="bodyText" placeholder='Your commentaries...' className="rounded-0" value={this.state.username} onChange={this.handleInputChange} />
                 </Form.Group>
 
-                <Button className="float-right rounded-0" variant="dark" type="submit" onClick={this.postNewCommentary}>Comment</Button>
-           
+                { this.state.author === undefined
+                    ?
+                    <Link to="/becomeUser"><Button className="float-right rounded-0" variant="dark">Register</Button></Link>
+                    :
+                    <Button className="float-right rounded-0" variant="dark" type="submit" onClick={this.postNewCommentary}>Comment</Button>}
+               
             </Form>
         </Col>
     )}
