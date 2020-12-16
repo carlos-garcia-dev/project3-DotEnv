@@ -20,10 +20,10 @@ router.get('/getAllPublications', (req, res) => {
 })
 
 
-router.get('/getOnePublication/:publication_id', (req, res) => {
+router.get('/getOnePublication/:id', checkId, (req, res) => {
     
     Publication
-        .findById(req.params.publication_id)
+        .findById(req.params.id)
         .populate('author')
         .populate('commentaries')
         .then(response => res.json(response))
@@ -31,15 +31,10 @@ router.get('/getOnePublication/:publication_id', (req, res) => {
 })
 
 
-router.get('/getPublicationComments/:publication_id', (req, res) => {
-    
-    if (!mongoose.Types.ObjectId.isValid(req.params.publication_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
+router.get('/getPublicationComments/:id', checkId, (req, res) => {
 
     Publication
-        .findOne({_id: mongoose.Types.ObjectId(req.params.publication_id)}, { title:0, subTitle:0, bodyText:0, imageUrl:0, tag:0, author:0})   
+        .findOne({_id: mongoose.Types.ObjectId(req.params.id)}, { title:0, subTitle:0, bodyText:0, imageUrl:0, tag:0, author:0})   
         .populate('commentaries')
         .then(response => res.json(response.commentaries))
         .catch(err => res.status(500).json(err))
@@ -58,10 +53,10 @@ router.post('/newPublication', (req, res) => {
 })
 
 
-router.put('/editPublication/:publication_id', (req, res) => {     
+router.put('/editPublication/:id', checkId, (req, res) => {     
     
     Publication
-        .findByIdAndUpdate(req.params.publication_id, req.body, { useFindAndModify: false })
+        .findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

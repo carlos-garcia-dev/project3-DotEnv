@@ -8,6 +8,8 @@ const Publication =  require('../models/publication.model')
 const User = require('../models/user.model')
 
 
+const checkId = require('../middlewares/middlewares')
+
 
 
 
@@ -20,20 +22,20 @@ router.get('/getAllComments', (req, res) => {
 })
 
 
-router.get('/getOneComment/:commentary_id', (req, res) => {
+router.get('/getOneComment/:id', checkId, (req, res) => {
 
     Commentary
-        .findById(req.params.commentary_id)
+        .findById(req.params.id)
         // .populate('author')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
-router.put('/editComment/:commentary_id', (req, res) => {     
+router.put('/editComment/:id', checkId, (req, res) => {     
     
     Commentary
-        .findByIdAndUpdate(req.params.commentary_id, req.body, { useFindAndModify: false })
+        .findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -43,29 +45,22 @@ router.post('/newComment', (req, res) => {
     
     const { title, bodyText, author, publicationId } = req.body
 
-
     Commentary
         .create({title, bodyText, author})
         .then(response => {
             const userPromsise = User.findByIdAndUpdate(response.author, { $push: { commentaries: response._id } }, { new: true }).populate('publications')
             const publicationPromise = Publication.findByIdAndUpdate(publicationId, {$push: {commentaries: response._id}}, { new: true })
         
-            return Promise.all([publicationPromise, userPromsise])
-        })
+            return Promise.all([publicationPromise, userPromsise])})
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
-router.delete('/deleteComment/:commentary_id', (req, res) => {        
-    
-    if (!mongoose.Types.ObjectId.isValid(req.params.commentary_id)) { 
-        res.status(404).json({ message: 'Invalid ID'})
-        return
-    }
-    
+router.delete('/deleteComment/:id', checkId, (req, res) => {        
+
     Commentary
-        .findByIdAndDelete(req.params.commentary_id)
+        .findByIdAndDelete(req.params.id)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

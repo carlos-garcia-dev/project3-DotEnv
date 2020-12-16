@@ -14,6 +14,6 @@ export default class ServicePublication {
     getAllPublicationComments = publicationId => this.apiHandler.get(`/getPublicationComments/${publicationId}`)
     
     postNewPublication = publicationDetails => this.apiHandler.post(`/newPublication`, publicationDetails)
-    putPublication = () => this.apiHandler.put('/editPublication/:publication_id')
-    deletePublication = () => this.apiHandler.delete('/deletePublication/:publication_id')
+    putPublication = () => this.apiHandler.put('/editPublication/:id')
+    deletePublication = () => this.apiHandler.delete('/deletePublication/:id')
 }
