@@ -9,5 +9,7 @@ export default class ServiceFile {
             withCredentials: true
         })
     }
+
     uploadImage =  imageForm => this.apiHandler.post('/upload', imageForm)
+    uploadAvatar =  imageForm => this.apiHandler.post('/avatar', imageForm)
 }

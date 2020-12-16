@@ -29,7 +29,7 @@ export default class CommentaryForm extends Component {
         this.serviceCommentary
             .postNewCommentary(this.state)
             .then(response => {
-                this.props.storedUser(response.data[1])
+                this.props.storeUser(response.data[1])
                 this.props.updateCommentList()
             })
             

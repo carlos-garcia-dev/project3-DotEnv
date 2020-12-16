@@ -60,7 +60,7 @@ export default class PublicationDetails extends Component {
             <Container>
                 
 
-                {this.state.publications
+                { this.state.publications
                     ?
                     <>
                         <Row>
@@ -95,7 +95,7 @@ export default class PublicationDetails extends Component {
                 
                         
                         <Row>
-                            <CommentaryForm signnedUser={this.props.signnedUser} storedUser={this.props.storedUser} updateCommentList={this.reloadComments} publicationId={this.state.publications._id} />
+                            <CommentaryForm signnedUser={this.props.signnedUser} storeUser={this.props.storeUser} updateCommentList={this.reloadComments} publicationId={this.state.publications._id} />
                         </Row>
 
                         { this.state.publications.commentaries.reverse().map(elm =>

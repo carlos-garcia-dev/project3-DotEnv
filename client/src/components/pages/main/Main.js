@@ -34,7 +34,7 @@ export default class Main extends Component {
                     </Carousel.Item>
 
                     
-                    <Carousel.Item interval={500}>
+                    <Carousel.Item interval={1000}>
                       <img
                         className="d-block w-100"
                         src="https://res.cloudinary.com/manager00/image/upload/v1608110239/Project3/Carousel/post._crtugv.png"
@@ -47,7 +47,7 @@ export default class Main extends Component {
                     </Carousel.Item>
 
                     
-                    <Carousel.Item>
+                    <Carousel.Item interval={1000}>
                         <img  className="d-block w-100"
                               src="https://res.cloudinary.com/manager00/image/upload/v1608110239/Project3/Carousel/post._crtugv.png"
                               alt="Third slide"/>

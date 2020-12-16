@@ -6,6 +6,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import ServiceAuth from '../../../../service/auth.service'
 
 
+
 export default class UserSignUp extends Component {
 
     constructor() {
@@ -30,7 +31,7 @@ export default class UserSignUp extends Component {
             .signUp(this.state)
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
-                this.props.history.push('/')})
+                this.props.history.push('/profile')})
             .catch(err => console.log('HA HABIDO UN ERROR',err))
     }
 

@@ -25,6 +25,7 @@ export default class NewPublication extends Component {
                 },
                     uploadingActive: false
             }
+        
         this.servicePublication = new ServicePublication()
         this.serviceFiles = new ServiceFile()
     }

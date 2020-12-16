@@ -12,17 +12,16 @@ import ServiceFile from '../../../../service/file.service'
 
 export default class UserProfile extends Component {
    
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            publication: {
+            user: {
 
                 title: '',
                 subTitle: '',
                 bodyText: '',
                 imageUrl: '',
                 tag: '',
-                // author: this.props.signnedUser ? this.props.signnedUser._id : '',
                 commentaries: []
             },
                 uploadingActive: false
@@ -39,7 +38,7 @@ export default class UserProfile extends Component {
         e.preventDefault()
 
         this.servicePublication
-            .postNewPublication(this.state.publication)
+            .uploadAvatar(this.state.publication)
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
                 this.props.history.push('/')})
