@@ -10,7 +10,7 @@ const userSchema = new Schema({
     name: {
         type: String,
         // match: /^[a-z ,.'-]+$/i,
-        min: 5,
+        // min: 5,
         required: true
     },    
 

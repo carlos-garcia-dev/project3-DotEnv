@@ -14,7 +14,7 @@ router.get('/getAllPublications', (req, res) => {
     
     Publication
         .find()
-        // .project('commentaries')
+        // .${project('commentaries')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -50,7 +50,9 @@ router.post('/newPublication', (req, res) => {
     
     Publication 
         .create(req.body)
-        .then(response => User.findByIdAndUpdate(response.author, {$push: { publications: response._id}}, {new: true}, { useFindAndModify: false } ))
+        .then(response => User
+                            .findByIdAndUpdate(response.author, { $push: { publications: response._id } }, { new: true }, { useFindAndModify: false })
+                            .populate('publications'))
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

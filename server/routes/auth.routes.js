@@ -12,9 +12,9 @@ const User = require('../models/user.model')
 
 router.post('/signup', (req, res) => {
 
-    const { username, password } = req.body
+    const { name, username, email, password } = req.body
 
-    if (!username || !password) {
+    if (!username || !password || !email || !name) {
         res.status(400).json({ message: 'Fill the user and password fields' })
         return
     }
@@ -38,8 +38,7 @@ router.post('/signup', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             User
-                .create({ username, password: hashPass })
-                .then(console.log(req.body)) 
+                .create({ username, email, name, password: hashPass })
                 .then(newUser => req.login(newUser, err => err ? res.status(500).json({message: 'It was not possible to sign up'}) : res.status(200).json(newUser)))
                 .catch(() => res.status(500).json({ message: 'It was not possible to create the user.' }))
         })

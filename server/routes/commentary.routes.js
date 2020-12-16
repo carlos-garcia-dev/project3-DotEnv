@@ -47,7 +47,7 @@ router.post('/newComment', (req, res) => {
     Commentary
         .create({title, bodyText, author})
         .then(response => {
-            const userPromsise = User.findByIdAndUpdate(response.author, { $push: { commentaries: response._id } }, { new: true })
+            const userPromsise = User.findByIdAndUpdate(response.author, { $push: { commentaries: response._id } }, { new: true }).populate('publications')
             const publicationPromise = Publication.findByIdAndUpdate(publicationId, {$push: {commentaries: response._id}}, { new: true })
         
             return Promise.all([publicationPromise, userPromsise])
