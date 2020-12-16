@@ -59,16 +59,16 @@ export default class App extends Component {
                 <Route path="/" exact render={() => <PublicationMain currentUser={this.state.signnedUser} />} />
                 <Route path="/entries" exact render={() => <PublicationList currentUser={this.state.signnedUser} />} />
                 <Route path="/entries/:publication_id" render={props => <PublicationDetails storedUser={this.setStateUser} signnedUser={this.state.signnedUser} {...props} />} />
-                <Route path="/new" render={props => <PublicationCreate currentUser={this.setStateUser} signnedUser={this.state.signnedUser} {...props} />} />
+                <Route path="/new" render={props => this.state.signnedUser ? <PublicationCreate storeUser={this.setStateUser} signnedUser={this.state.signnedUser} {...props} /> : <Redirect to="/signin" />} />
                 <Route path="/edit" render={props => <PublicationDetails currentUser={this.setStateUser} signnedUser={this.state.signnedUser} {...props} />} />
                 <Route path="/becomeUser" render={() => <BecomeUser currentUser={this.state.signnedUser} />} />
                 <Route path="/about" render={() => <About currentUser={this.state.signnedUser} />} />
 
 
                 <Route path="/signup" render={props => <UserSignUp storedUser={this.setStateUser} {...props} />} />
-                <Route path="/signin" render={props => <UserSignIn storedUser={this.setStateUser} {...props} />} />
+                <Route path="/signin" render={props => <UserSignIn storeUser={this.setStateUser} {...props} />} />
                 <Route path="/signout" render={props => <UserSignIn storedUser={this.setStateUser} {...props} />} />
-                <Route path="/profile" render={() => this.state.signnedUser ? <UserProfile signnedUser={this.state.signnedUser} storedUser={this.setStateUser} /> : <Redirect to="signin" />} />
+                <Route path="/profile" render={() => this.state.signnedUser ? <UserProfile signnedUser={this.state.signnedUser} storedUser={this.setStateUser} /> : <Redirect to="/" />} />
               </Switch>
             </main>
 

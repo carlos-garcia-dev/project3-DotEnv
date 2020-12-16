@@ -8,8 +8,8 @@ import ServiceAuth from '../../../../service/auth.service'
 
 export default class SignIn extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
             this.state = {
                 username: '',
                 password: ''

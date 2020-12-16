@@ -17,7 +17,7 @@ class Navigation extends Component {
     signOut = () => {
         this.serviceAuth
             .signOut()
-            .then(res => this.props.storedUser(res.data))
+            .then(res => this.props.storedUser(undefined))
             .catch(err => console.log(err))
     }
 

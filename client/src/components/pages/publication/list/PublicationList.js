@@ -32,7 +32,6 @@ export default class PublicationList extends Component {
     }
 
 
-
     render() {
     return(
             <Container>

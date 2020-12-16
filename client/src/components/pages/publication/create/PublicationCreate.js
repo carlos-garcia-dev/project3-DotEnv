@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 import Loader from '../../../shared/loader/Loader'
 
@@ -19,8 +19,8 @@ export default class NewPublication extends Component {
                     subTitle: '',
                     bodyText: '',
                     imageUrl: '',
-                    tag: '',
-                    author: this.props.signnedUser ? this.props.signnedUser._id : '',
+                    tag:'',
+                    author: this.props.signnedUser._id,
                     commentaries: []
                 },
                     uploadingActive: false
@@ -36,11 +36,12 @@ export default class NewPublication extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
+        console.log(this.state.publication)
         this.servicePublication
             .postNewPublication(this.state.publication)
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
-                this.props.history.push('/')})
+                this.props.history.push(`/entries/${signnedUser.data.publications[signnedUser.data.publications.length - 1]}`)})
             .catch(err => console.log({err}))
     }
 
@@ -80,7 +81,7 @@ export default class NewPublication extends Component {
                             
                             <Form.Group controlId="title">
                                 <Form.Label>Title</Form.Label>
-                                <Form.Control type="text" name="title" placeholder='Title' value={this.state.publication.title} onChange={this.handleInputChange} />
+                                <Form.Control type="text" size="lg" name="title" placeholder='Title' value={this.state.publication.title} onChange={this.handleInputChange} />
                             </Form.Group>
                             
                             <Form.Group controlId="subTitle">
@@ -90,7 +91,7 @@ export default class NewPublication extends Component {
                    
                             <Form.Group controlId="body">
                                 <Form.Label>Entry</Form.Label>
-                                <Form.Control type="textarea" name="bodyText"  rows="10" cols="50" placeholder="Write your new entry here ..." value={this.state.publication.bodyText} onChange={this.handleInputChange} />
+                                <Form.Control as="textarea" type="text" name="bodyText"  rows="10" cols="50" placeholder="Write your new entry here ..." value={this.state.publication.bodyText} onChange={this.handleInputChange} />
                              </Form.Group>
 
                             <Form.Group controlId="imageUrl" >
@@ -98,36 +99,18 @@ export default class NewPublication extends Component {
                                 <Form.Control type="file" name="imageUrl" onChange={this.handleImageUpload} />
                             </Form.Group>
                             
-                            <Form.Group controlId="tag" type="dropdown" name="tag" placeholder='Select the category' onChange={this.handleInputChange}>
+                            <Form.Group controlId="tag">
                                 <Form.Label>Tag</Form.Label>
                             
-                                <Dropdown>
-                                  <Dropdown.Toggle className="btn-block" id="dropdown-basic">Select one Tag</Dropdown.Toggle>
-                                        
-                                  <Dropdown.Menu className="btn-block">
-                                    <Dropdown.Item href="#/action-1">Web design</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Cybersecurity</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Data analytics</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">Digital marketing</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-5">UX / UI Design</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-6">Developement tools</Dropdown.Item>                              
-                                  </Dropdown.Menu>
-                                </Dropdown>
+                                <Form.Control as="select" name="tag" value={this.state.publication.tag} onChange={this.handleInputChange}>
+                                    <option value="Web design">Web design</option>
+                                    <option value="Cybersecurity">Cybersecurity</option>
+                                    <option value="Data analytics">Data analytics</option>
+                                    <option value="Digital marketing">Digital marketing</option>
+                                    <option value="UX / UI Design">UX / UI Design</option>
+                                    <option value="Developement tools">Developement tools</option>
+                                </Form.Control>
                             </Form.Group>
-                        
-                        {/* 
-
-                            <ButtonGroup className="mb-2">
-                              <Button>Web design</Button>
-                              <Button>Cybersecurity</Button>
-                              <Button>Data analytics</Button>
-                            </ButtonGroup>
-
-                            <ButtonGroup className="mb-2">
-                              <Button>Digital marketing</Button>
-                              <Button>UX / UI Design</Button>
-                              <Button>Developement tools</Button>
-                            </ButtonGroup> */}
 
                             
                             <Button className="float-right" variant="dark" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Uploading...' : 'Create entry'}</Button>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
 import Loader from '../../../shared/loader/Loader'
@@ -85,13 +85,13 @@ export default class PublicationDetails extends Component {
 
                         <Row>
                             <Col>
-                                <Link ><h4>{this.state.publications.createdAt}</h4></Link>
+                                <h4>{this.state.publications.createdAt}</h4>
                                 <Link className="float-right"> <h4>{this.state.publications.author._id}</h4></Link>
                             </Col>
                         </Row>
                          
                         
-                        { this.props.signnedUser && <Link onClick={this.putPublication}>Edit</Link> }
+                        { this.props.signnedUser && <Link onClick={this.deletePublication}><Button className="float-right rounded-0" variant="dark">Delete</Button></Link> }
                 
                         
                         <Row>

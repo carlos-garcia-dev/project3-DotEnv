@@ -53,8 +53,9 @@ export default class CommentaryForm extends Component {
 
                 <Form.Group controlId="title">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control type="text" name="bodyText" placeholder='Your commentaries...' className="rounded-0" value={this.state.username} onChange={this.handleInputChange} />
+                    <Form.Control  as="textarea" type="text" name="bodyText"  rows="4" placeholder='Your commentaries...' className="rounded-0" value={this.state.username} onChange={this.handleInputChange} />
                 </Form.Group>
+
 
                 { this.state.author === undefined
                     ?

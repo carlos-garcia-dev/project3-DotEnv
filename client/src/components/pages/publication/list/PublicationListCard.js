@@ -1,6 +1,8 @@
 import { Col, Card, Row, Media } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
+import  './PublicationListCard.css'
+
 
 const PublicationListCard = ({ _id, title, subTitle, imageUrl, tag }) => {
     
@@ -16,7 +18,7 @@ const PublicationListCard = ({ _id, title, subTitle, imageUrl, tag }) => {
                             src={imageUrl}
                             alt={title}
                         />
-                    <Media.Body style={{ height: '200px' }}>
+                    <Media.Body style={{ height: '200px', paddingLeft:'1.5rem'}}>
                         <Card.Title><Link to={`/entries/${_id}`}>{title}</Link></Card.Title>
                         <Card.Subtitle>{subTitle}</Card.Subtitle>
                         <Card.Link >{tag}</Card.Link>
@@ -27,24 +29,5 @@ const PublicationListCard = ({ _id, title, subTitle, imageUrl, tag }) => {
         </Col>
     )
 }
+
 export default PublicationListCard
-
-
-
-        // <Col lg={6}>
-        //     <Card className="publication-card">
-        //         <Row>
-        //             <Col md={2}> <Card.Img style={{ height: '100px' }} src={imageUrl} /> </Col>
-
-        //              <Col>       
-        //                 <Card.Body style={{ height: '200px' }}>
-        //                     <Card.Title><Link to={`/entries/${_id}`}>{title}</Link></Card.Title>
-        //                     <Card.Subtitle>{subTitle}</Card.Subtitle>
-        //                     <Card.Link>{tag}</Card.Link>
-        //                 </Card.Body>
-        //             </Col>
-        //         </Row>
-        //     </Card>
-                    
-        //     <br></br>
-        // </Col>
