@@ -108,8 +108,8 @@ export default class NewPublication extends Component {
                                     <option value="Cybersecurity">Cybersecurity</option>
                                     <option value="Data analytics">Data analytics</option>
                                     <option value="Digital marketing">Digital marketing</option>
-                                    <option value="UX / UI Design">UX / UI Design</option>
-                                    <option value="Developement tools">Developement tools</option>
+                                    <option value="UX / UI design">UX / UI design</option>
+                                    <option value="Dev tools">Dev tools</option>
                                 </Form.Control>
                             </Form.Group>
 

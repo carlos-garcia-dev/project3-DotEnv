@@ -29,7 +29,7 @@ const publicationSchema = new Schema({
     
     tag: [{
         type: String,
-        enum: ['Web design', 'Cybersecurity', 'Data analytics', 'Digital marketing', 'UX / UI Design', 'Developement tools']
+        enum: ['Web design', 'Cybersecurity', 'Data analytics', 'Digital marketing', 'UX / UI design', 'Dev tools']
     }],
 
     author: {

@@ -47,7 +47,7 @@ for (let i = 0; i < 10; i++) {
 const imagePosts = ['https://res.cloudinary.com/manager00/image/upload/v1608204175/Publications/unsplash11_t80u9k.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204174/Publications/unsplash10_ecfsvq.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204174/Publications/unsplash3_yrn2jz.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204174/Publications/unsplash2_miv8sv.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204174/Publications/unsplash9_xlp35k.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204174/Publications/unsplash8_tpogl2.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204171/Publications/unsplash1_yyxibx.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204171/Publications/unsplash12_e3gdkh.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204171/Publications/unsplash6_etx6rb.jpg',
                     'https://res.cloudinary.com/manager00/image/upload/v1608204170/Publications/unsplash7_wetkrj.jpg', 'https://res.cloudinary.com/manager00/image/upload/v1608204170/Publications/unsplash4_ptpab3.jpg']
 const associatedPublications = []
-const everyTag = ['Web design', 'Cybersecurity', 'Data analytics', 'Digital marketing', 'UX / UI Design', 'Developement tools']
+const everyTag = ['Web design', 'Cybersecurity', 'Data analytics', 'Digital marketing', 'UX / UI design', 'Dev tools']
 
 
 User

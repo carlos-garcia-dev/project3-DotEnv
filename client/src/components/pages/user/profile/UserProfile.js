@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Form, Button, Modal } from 'react-bootstrap'
+import { Container, Col, Form, Button, Modal } from 'react-bootstrap'
 
 import Loader from '../../../shared/loader/Loader'
 
 import PublicationListCard from '../../publication/list/PublicationListCard'
+import UserProfileCard from '../../user/profile/UserProfileCard'
 
 
 // import ServicePublication from '../../../../service/publication.service'
@@ -70,11 +71,22 @@ export default class UserProfile extends Component {
             <Container>
                 
 
-                <h1 className="page-title">{ this.state.signnedUser.username }'s profile</h1>
+            <h1 className="page-title"> Profile</h1>
             
-                <img src={this.state.signnedUser.avatar} alt={this.state.signnedUser.username } />
+            
+            <Col>
+                { this.state.signnedUser.username }
 
-
+                <img style={{ width: "100px", height: "100px" }}  src={this.state.signnedUser.avatar} alt={this.state.signnedUser.username } />
+            </Col>
+            
+            
+            <Col>
+                <UserProfileCard />
+                <PublicationListCard />
+                <PublicationListCard />
+            </Col>
+            
                 
 {/* 
                 <Form style={{margin: "10px"}} onSubmit={this.handleSubmit}>
@@ -87,7 +99,6 @@ export default class UserProfile extends Component {
                 </Form>
              */}
                 
-            <PublicationListCard />
                 {/* {this.state.map.publications} */}
 
             </Container>

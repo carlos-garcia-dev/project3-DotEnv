@@ -65,7 +65,9 @@ export default class PublicationDetails extends Component {
                     <>
                         <Row>
                             <Col>
-                                <h1 className="page-title">Entries</h1>
+                            <h1 className="page-title">Entries</h1>
+                            <h1 className="page-title">{this.state.publications.title}</h1>
+                            
                                 <Link><h4 className="float-right">{this.state.publications.tag}</h4></Link>
                             </Col>
                         </Row>
@@ -83,13 +85,13 @@ export default class PublicationDetails extends Component {
                         <p className="entries-bodyText">{this.state.publications.bodyText}</p>
                     
 
-                        <Row>
-                            <Col>
                             <h4>{this.state.publications.createdAt}</h4>
-                            <img src={this.state.publications.author.avatar} alt={this.state.publications.author.username} /> 
+                  
+                            <Col>
+                                <img style={{ width: "100px", height: "100px" }} src={this.state.publications.author.avatar} alt={this.state.publications.author.username} className={"float-right"} /> 
                                 <Link className="float-right"> <h4>{this.state.publications.author.username}</h4></Link>
                             </Col>
-                        </Row>
+               
                          
                         
                         { this.props.signnedUser && <Link onClick={this.deletePublication}><Button className="float-right rounded-0" variant="dark">Delete</Button></Link> }
