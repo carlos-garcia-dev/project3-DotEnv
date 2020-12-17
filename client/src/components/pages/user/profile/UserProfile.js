@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
-import { Container, Col, Form, Button, Modal } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Container, Col, Row, Form, Button, Modal } from 'react-bootstrap'
+
+import './UserProfileCard.css'
+
 
 import Loader from '../../../shared/loader/Loader'
 
-import PublicationListCard from '../../publication/list/PublicationListCard'
 import UserProfileCard from '../../user/profile/UserProfileCard'
+import PublicationListCard from '../../publication/list/PublicationListCard'
+import CommentaryCard from '../../commentary/card/CommentaryCard'
 
 
 // import ServicePublication from '../../../../service/publication.service'
@@ -30,82 +35,42 @@ export default class UserProfile extends Component {
     handleInputChange = e => this.setState({ siggnedUser: { ...this.state.siggnedUser, [e.target.name]: e.target.value }})
 
 
-    handleSubmit = e => {
-        e.preventDefault()
-
-        this.serviceUser
-            .putUser(this.state.siggnedUser)
-            .then(signnedUser => {
-                this.props.storeUser(signnedUser.data)
-                this.props.history.push('/')})
-            .catch(err => console.log({err}))
-    }
-
-
-    handleImageUpload = e => {
-        const uploadData = new FormData()
-
-        uploadData.append('avatar', e.target.files[0])
-
-        // e.target.files.size >= 4000 ? e.target.files. : <Alert></Alert>
-
-        this.setState({ uploadingActive: true })
-
-
-        this.serviceFiles
-            .uploadAvatar(uploadData)
-            .then(response => this.setState({
-                siggnedUser: { ...this.state.siggnedUser, avatar: response.data.secure_url },
-                uploadingActive: false }))
-            .catch(err => console.log('ERROR:', err))
-    }
-
-
-
-
-
-
     render() {
     return (
+        <Container>
             
-            <Container>
-                
-
             <h1 className="page-title"> Profile</h1>
             
-            
-            <Col>
-                { this.state.signnedUser.username }
-
-                <img style={{ width: "100px", height: "100px" }}  src={this.state.signnedUser.avatar} alt={this.state.signnedUser.username } />
-            </Col>
-            
-            
-            <Col>
-                <UserProfileCard />
-                <PublicationListCard />
-                <PublicationListCard />
-            </Col>
-            
+            <Row>
                 
-{/* 
-                <Form style={{margin: "10px"}} onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="avatar" >
-                        <Form.Label>Images  {this.state.uploadingActive && <Loader />} </Form.Label>
-                        <Form.Control type="file" name="avatar" onChange={this.handleImageUpload} />
-                    </Form.Group>
+                <Col md={4}>
+                    <aside className="profile-card">
+                         {/* <UserProfileCard currentUser={this.state.siggnedUser}  /> */}
+                        <img src={this.state.signnedUser.avatar} alt={this.state.signnedUser.username } />
+                            <h2>{this.state.signnedUser.username}</h2>
+                            <hr></hr>
+                            
+                            <p>Name</p>
+                            <h4>{this.state.signnedUser.name}</h4>
+                            <p>Email</p>
+                            <p>{this.state.signnedUser.email}</p>
+                        <Link to="/profile/edit"><Button className="rounded-0 btn-block" variant="dark">Edit </Button></Link>
+                    </aside>          
+                </Col>
 
-                    <Button className="float-right" variant="dark" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Uploading...' : 'Submit changes'}</Button>
-                </Form>
-             */}
-                
-                {/* {this.state.map.publications} */}
 
-            </Container>
-            
-        
-        
-        
+
+                        <Col md={8}>
+
+                             <h2 className="section-titles">Your entries</h2>
+          
+                            {/* {this.state.signnedUser.publications.map(<PublicationListCard />)} */}
+
+                            <h2 className="section-titles">Your comments</h2>
+                            {/* {this.state.signnedUser.commentaries.map( <CommentaryCard />) } */}
+                        </Col>
+            </Row>
+        </Container>  
         ) 
     }
 }

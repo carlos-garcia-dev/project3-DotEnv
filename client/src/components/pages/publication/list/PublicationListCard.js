@@ -8,7 +8,7 @@ const PublicationListCard = ({ _id, title, subTitle, imageUrl, tag }) => {
     
     return (
 
-        <Col lg={8} md={10}>
+        <Col lg={6} md={12}>
             <Row className="align-self-center mr-3">
                 <Media style={{ height: "10rem", width:"30rem", border:"1px solid black", margin:"1rem", padding:"1.5rem"}}>
                         <img
