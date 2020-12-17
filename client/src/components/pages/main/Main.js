@@ -14,8 +14,7 @@ export default class Main extends Component {
 
 
     render() {
-       
-        return (
+    return(
             <Container>
                 
                 <h1 className="page-title">Main</h1>
@@ -70,7 +69,7 @@ export default class Main extends Component {
   
             </section>
 
-            </Container>
-        )
+        </Container>
+      )
     }
 }

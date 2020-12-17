@@ -5,8 +5,8 @@ export default class ServiceUser {
 
     constructor(){
         this.apiHandler = axios.create({
-            baseURL:'http://localhost:5000/api/user',
-            withCredentials: true
+             baseURL:'http://localhost:5000/api/user',
+             withCredentials: true
         })
     }
 

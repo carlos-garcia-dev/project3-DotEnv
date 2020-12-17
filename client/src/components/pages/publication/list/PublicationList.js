@@ -38,7 +38,7 @@ export default class PublicationList extends Component {
                 
                 <h1 className="page-title">Publications</h1>
                 
-                <Row>
+                <Row style={{paddingLeft: "18px"}}>
                     { this.props.currentUser !== undefined && <Link to='/new'><Button className="float-right rounded-0" variant="dark">Create</Button></Link> }
                 </Row>
                 

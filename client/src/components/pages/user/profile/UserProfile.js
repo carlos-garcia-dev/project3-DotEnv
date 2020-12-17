@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Col, Row, Form, Button, Modal } from 'react-bootstrap'
 
-import './UserProfileCard.css'
+import './UserProfileForm.css'
 
 
 import Loader from '../../../shared/loader/Loader'
 
-import UserProfileCard from '../../user/profile/UserProfileCard'
+import UserProfileForm from './UserProfileForm'
 import PublicationListCard from '../../publication/list/PublicationListCard'
 import CommentaryCard from '../../commentary/card/CommentaryCard'
 
@@ -24,7 +24,8 @@ export default class UserProfile extends Component {
             this.state = {
 
                 signnedUser: this.props.signnedUser,
-                uploadingActive: false
+                uploadingActive: false,
+                showModal: false,
             }
         // this.servicePublication = new ServicePublication()
         this.serviceUser = new ServiceUser()
@@ -45,7 +46,7 @@ export default class UserProfile extends Component {
                 
                 <Col md={4}>
                     <aside className="profile-card">
-                         {/* <UserProfileCard currentUser={this.state.siggnedUser}  /> */}
+                        <UserProfileForm currentUser={this.state.siggnedUser}  />
                         <img src={this.state.signnedUser.avatar} alt={this.state.signnedUser.username } />
                             <h2>{this.state.signnedUser.username}</h2>
                             <hr></hr>
@@ -54,22 +55,25 @@ export default class UserProfile extends Component {
                             <h4>{this.state.signnedUser.name}</h4>
                             <p>Email</p>
                             <p>{this.state.signnedUser.email}</p>
+                        
                         <Link to="/profile/edit"><Button className="rounded-0 btn-block" variant="dark">Edit </Button></Link>
                     </aside>          
                 </Col>
 
 
 
-                        <Col md={8}>
+                <Col md={8}>    
+                    <h2 className="section-titles">Your entries</h2>
+                        {this.state.signnedUser.publications.map(elm => <PublicationListCard key={elm._id} {...elm}/> )}    
+                    
+                    <h2 className="section-titles">Your comments</h2>
+                        {this.state.signnedUser.commentaries.map(elm => <CommentaryCard key={elm._id} {...elm}/>) }
+                </Col>
 
-                             <h2 className="section-titles">Your entries</h2>
-          
-                            {/* {this.state.signnedUser.publications.map(<PublicationListCard />)} */}
-
-                            <h2 className="section-titles">Your comments</h2>
-                            {/* {this.state.signnedUser.commentaries.map( <CommentaryCard />) } */}
-                        </Col>
             </Row>
+
+            {/* <UserProfileForm show={this.state.showModal} /> */}
+
         </Container>  
         ) 
     }
