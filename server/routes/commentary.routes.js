@@ -26,7 +26,7 @@ router.get('/getOneComment/:id', checkId, (req, res) => {
 
     Commentary
         .findById(req.params.id)
-        // .populate('author')
+        .populate('author')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

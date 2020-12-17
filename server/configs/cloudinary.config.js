@@ -30,7 +30,7 @@ const uploadCloud = multer({ storage: storage });
 const storageAvatar = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'Avatars',
+        folder: 'ProAvatars',
         format: async (req, file) => 'png',  //'jpeg', 'jfif', 'jpg', 'jpeg2000', 'gif'
     }
 })

@@ -14,6 +14,7 @@ router.get('/getAllPublications', (req, res) => {
     
     Publication
         .find()
+        // .find({}, ${project:{})
         // .${project('commentaries')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))

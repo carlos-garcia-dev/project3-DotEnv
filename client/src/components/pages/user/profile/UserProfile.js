@@ -1,44 +1,39 @@
 import React, { Component } from 'react'
-import { Container, Form } from 'react-bootstrap'
+import { Container, Form, Button, Modal } from 'react-bootstrap'
 
 import Loader from '../../../shared/loader/Loader'
 
 import PublicationListCard from '../../publication/list/PublicationListCard'
 
 
-import ServicePublication from '../../../../service/publication.service'
+// import ServicePublication from '../../../../service/publication.service'
 import ServiceFile from '../../../../service/file.service'
+import ServiceUser from '../../../../service/user.service'
 
 
 export default class UserProfile extends Component {
    
     constructor(props) {
         super(props)
-        this.state = {
-            user: {
+            this.state = {
 
-                title: '',
-                subTitle: '',
-                bodyText: '',
-                imageUrl: '',
-                tag: '',
-                commentaries: []
-            },
+                signnedUser: this.props.signnedUser,
                 uploadingActive: false
-    }
-        this.servicePublication = new ServicePublication()
+            }
+        // this.servicePublication = new ServicePublication()
+        this.serviceUser = new ServiceUser()
         this.serviceFiles = new ServiceFile()
     }
 
     
-    handleInputChange = e => this.setState({ publication: { ...this.state.publication, [e.target.name]: e.target.value }})
+    handleInputChange = e => this.setState({ siggnedUser: { ...this.state.siggnedUser, [e.target.name]: e.target.value }})
 
 
     handleSubmit = e => {
         e.preventDefault()
 
-        this.servicePublication
-            .uploadAvatar(this.state.publication)
+        this.serviceUser
+            .putUser(this.state.siggnedUser)
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
                 this.props.history.push('/')})
@@ -49,7 +44,7 @@ export default class UserProfile extends Component {
     handleImageUpload = e => {
         const uploadData = new FormData()
 
-        uploadData.append('imageUrl', e.target.files[0])
+        uploadData.append('avatar', e.target.files[0])
 
         // e.target.files.size >= 4000 ? e.target.files. : <Alert></Alert>
 
@@ -57,9 +52,9 @@ export default class UserProfile extends Component {
 
 
         this.serviceFiles
-            .uploadImage(uploadData)
+            .uploadAvatar(uploadData)
             .then(response => this.setState({
-                publication: { ...this.state.publication, imageUrl: response.data.secure_url },
+                siggnedUser: { ...this.state.siggnedUser, avatar: response.data.secure_url },
                 uploadingActive: false }))
             .catch(err => console.log('ERROR:', err))
     }
@@ -70,22 +65,28 @@ export default class UserProfile extends Component {
 
 
     render() {
-        return (
+    return (
             
             <Container>
                 
-                <h1 className="page-title">Profile</h1>
+
+                <h1 className="page-title">{ this.state.signnedUser.username }'s profile</h1>
             
-                {/* <img src={{this.siggnedUser.avatar}} alt="Hola"/> */}
+                <img src={this.state.signnedUser.avatar} alt={this.state.signnedUser.username } />
+
+
                 
-
+{/* 
                 <Form style={{margin: "10px"}} onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="imageUrl" >
+                    <Form.Group controlId="avatar" >
                         <Form.Label>Images  {this.state.uploadingActive && <Loader />} </Form.Label>
-                        <Form.Control type="file" name="imageUrl" onChange={this.handleImageUpload} />
+                        <Form.Control type="file" name="avatar" onChange={this.handleImageUpload} />
                     </Form.Group>
-                </Form>
 
+                    <Button className="float-right" variant="dark" type="submit" disabled={this.state.uploadingActive}>{this.state.uploadingActive ? 'Uploading...' : 'Submit changes'}</Button>
+                </Form>
+             */}
+                
             <PublicationListCard />
                 {/* {this.state.map.publications} */}
 

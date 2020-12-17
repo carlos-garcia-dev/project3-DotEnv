@@ -85,8 +85,9 @@ export default class PublicationDetails extends Component {
 
                         <Row>
                             <Col>
-                                <h4>{this.state.publications.createdAt}</h4>
-                                <Link className="float-right"> <h4>{this.state.publications.author._id}</h4></Link>
+                            <h4>{this.state.publications.createdAt}</h4>
+                            <img src={this.state.publications.author.avatar} alt={this.state.publications.author.username} /> 
+                                <Link className="float-right"> <h4>{this.state.publications.author.username}</h4></Link>
                             </Col>
                         </Row>
                          
