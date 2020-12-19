@@ -12,7 +12,7 @@ import PublicationListCard from '../../publication/list/PublicationListCard'
 import CommentaryCard from '../../commentary/card/CommentaryCard'
 
 
-// import ServicePublication from '../../../../service/publication.service'
+import ServicePublication from '../../../../service/publication.service'
 import ServiceFile from '../../../../service/file.service'
 import ServiceUser from '../../../../service/user.service'
 
@@ -22,12 +22,11 @@ export default class UserProfile extends Component {
     constructor(props) {
         super(props)
             this.state = {
-
                 signnedUser: this.props.signnedUser,
                 uploadingActive: false,
-                showModal: false,
+                
             }
-        // this.servicePublication = new ServicePublication()
+       
         this.serviceUser = new ServiceUser()
         this.serviceFiles = new ServiceFile()
     }
@@ -35,9 +34,39 @@ export default class UserProfile extends Component {
     
     handleInputChange = e => this.setState({ siggnedUser: { ...this.state.siggnedUser, [e.target.name]: e.target.value }})
 
+    handleSubmit = e => {
+        e.preventDefault()
+        this.serviceUser
+             .deleteUser(this.state)
+             .then(siggnedUser => {
+                 this.props.storeUser(siggnedUser._id)
+                 this.props.updateCommentList()
+             })
+             
+             .catch(err => console.log({ err }))
+    }
+
+    editUser = () => {
+        this.serviceUser
+            .putUser()
+            .then(siggnedUser => this.setState({ publications: siggnedUser.data }))
+            .catch(err => console.log(err))
+    }
+
+    deleteUser = () => {
+        this.serviceUser
+            .deleteUser()
+            .then(siggnedUser => this.props.storeUser(siggnedUser._id))
+            .catch(err => console.log(err))
+    }
+
+
+
+
+
 
     render() {
-    return (
+    return(
         <Container>
             
             <h1 className="page-title"> Profile</h1>
@@ -56,7 +85,10 @@ export default class UserProfile extends Component {
                             <p>Email</p>
                             <p>{this.state.signnedUser.email}</p>
                         
-                        <Link to="/profile/edit"><Button className="rounded-0 btn-block" variant="dark">Edit </Button></Link>
+                        <Link to="/profile/edit"><Button className="rounded-0 btn-block" variant="dark" onClick={this.editUser}>Edit </Button></Link>
+                        <br></br>
+                        <Link to='/deleteUser/id'><Button className="rounded-0 btn-block" variant="dark" onClick={this.deleteUser}>Delete </Button></Link>
+                   
                     </aside>          
                 </Col>
 

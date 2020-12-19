@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
-import Loader from '../../../shared/loader/Loader'
+import Loader from '../../../shared/loader/Loader.js'
 
 import CommentaryCard from '../../commentary/card/CommentaryCard'
 import CommentaryForm from '../../commentary/form/CommentaryForm'
 
 import ServicePublication from '../../../../service/publication.service'
 import ServiceCommentary from '../../../../service/commentary.service'
+
+
+
 
 
 export default class PublicationDetails extends Component {
@@ -52,21 +55,30 @@ export default class PublicationDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    
+    deletePublication = () => {
+        this.servicePublication
+            .deletePublication()
+            .then(res => this.setState({ publications: res.data }))
+            .catch(err => console.log(err))
+    }
+
+
 
 
 
     render() {
-    return (
-            <Container>
-                
+        return (
+            <Container>  
 
                 { this.state.publications
                     ?
                     <>
                         <Row>
                             <Col>
-                            <h1 className="page-title">Entries</h1>
-                            <h1 className="page-title">{this.state.publications.title}</h1>
+                                <h1 className="page-title">Entries</h1>
+                                
+                                <h1 className="page-title">{this.state.publications.title}</h1>
                             
                                 <Link><h4 className="float-right">{this.state.publications.tag}</h4></Link>
                             </Col>

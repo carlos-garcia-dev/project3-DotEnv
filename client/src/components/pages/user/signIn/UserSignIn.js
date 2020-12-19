@@ -29,13 +29,12 @@ export default class SignIn extends Component {
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
                 this.props.history.push('/profile')})
-            .catch(err => console.log(err))
+            .catch(err => console.log('NEW ERROR:', err))
     }
 
 
     render() {
-
-        return (
+    return (
 
             <Container>
 

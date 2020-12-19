@@ -32,7 +32,7 @@ export default class UserSignUp extends Component {
             .then(signnedUser => {
                 this.props.storeUser(signnedUser.data)
                 this.props.history.push('/profile')})
-            .catch(err => console.log('HA HABIDO UN ERROR',err))
+            .catch(err => console.log('NEW ERROR:', err))
     }
 
 
@@ -43,33 +43,35 @@ export default class UserSignUp extends Component {
                 <Col md={{ span: 6, offset: 3 }}>
                 
                     <h1 className="page-title">Sign Up</h1>
+
                     <Form onSubmit={this.handleSubmit}>
                     
                         <Form.Group controlId="name">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" name="name" placeholder='Name' value={this.state.name} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="name" placeholder='Name' className="rounded-0" value={this.state.name} onChange={this.handleInputChange} />
                         </Form.Group>
                     
                         <Form.Group controlId="username">
                             <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" name="username" placeholder='Username' value={this.state.username} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="username" placeholder='Username' className="rounded-0" value={this.state.username} onChange={this.handleInputChange} />
                         </Form.Group>
            
                         <Form.Group controlId="email">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="text" name="email" placeholder='Email' value={this.state.email} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="email" placeholder='Email' className="rounded-0" value={this.state.email} onChange={this.handleInputChange} />
                         </Form.Group>
 
                         <Form.Group controlId="password">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" name="password" placeholder='Password' value={this.state.password} onChange={this.handleInputChange} />
+                            <Form.Control type="password" name="password" placeholder='Password' className="rounded-0" value={this.state.password} onChange={this.handleInputChange} />
                         </Form.Group>
                     
-                        <Button className="float-right" variant="dark" type="submit">Sign up</Button>
+                        <Button className="float-right rounded-0" variant="dark" type="submit">Sign up</Button>
         
                     </Form>
                 </Col>
             </Row>
         </Container>
-    )}  
+        )
+    }  
 }

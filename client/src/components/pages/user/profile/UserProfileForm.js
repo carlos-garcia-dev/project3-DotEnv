@@ -6,7 +6,7 @@ import ServiceFile from '../../../../service/file.service'
 import ServiceUser from '../../../../service/user.service'
 
 
-import Loader from '../../../shared/loader/Loader'
+// import Loader from '../../../shared/loader/Loader'
 
 
 
@@ -61,7 +61,7 @@ export default class UserProfileForm extends Component {
     return(
         <>
             {/* <ModalForm show={this.state.showModal} /> */}
-            <h4>Edit Profile</h4>
+            {/* <h4>Edit Profile</h4> */}
 {/* 
             <Form>
 

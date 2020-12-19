@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PublicationService from '../../../../service/publication.service'
-import Container from 'react-bootstrap/Container'
+import { Container, Row } from 'react-bootstrap'
 
 
-// import Loader from '../../shared/loader/Loader'
+import Loader from '../../../shared/loader/Loader'
 
 import PublicationListCard from '../publicationList-Card/PublicationListCard'
 
@@ -28,7 +28,13 @@ export default class UserSavedPublications extends Component {
     render() {
         return (
             <Container>
+                
                 <h1 className="page-title">Saved Publications</h1>
+                
+                <Row>
+                    <PublicationListCard />
+                </Row>
+            
             </Container>
         ) 
     }

@@ -65,6 +65,7 @@ export default class CommentaryForm extends Component {
                
             </Form>
         </Col>
-    )}
+        )
+    }
 }
 

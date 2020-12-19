@@ -46,12 +46,12 @@ export default class App extends Component {
     }
 
   
-    setStateUser = user => this.setState({ signnedUser: user }, () => console.log('NEW APP STATE:', this.state))
+    setStateUser = user => this.setState({ signnedUser: user }, () => console.log('CURRENT APP STATE:', this.state))
     
   
     render(){
-      return (
-          <>
+    return (
+        <>
             <Navigation storedUser={this.setStateUser} signnedUser={this.state.signnedUser} />
 
             <main>
@@ -73,7 +73,7 @@ export default class App extends Component {
             </main>
 
             <FootBar />
-          </>
-        )
-      }
+        </>
+      )
+    }
 }
