@@ -5,7 +5,7 @@ export default class ServiceUser {
 
     constructor(){
         this.apiHandler = axios.create({
-             baseURL:'http://localhost:5000/api/user',
+             baseURL: process.env.REACT_APP_API_URL,
              withCredentials: true
         })
     }

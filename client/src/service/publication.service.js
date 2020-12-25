@@ -5,7 +5,7 @@ export default class ServicePublication {
 
     constructor(){
         this.apiHandler = axios.create({
-            baseURL:'http://localhost:5000/api/publications'
+            baseURL: process.env.REACT_APP_API_URL,
         })
     }
 
